@@ -1,21 +1,20 @@
 <h2>Signup</h2>
 
 <form action="/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-  <br><br>
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  
-  <% if (typeof message !== "undefined") { %>
-    <div class="error-message"><%= message %></div>
-  <% } %>
-  <br><br>
-  
-  <button>Create account</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
+  <div class="form-row align-items-center mx-auto" style="width: 800px;">
+      <div class="col-auto">
+        <label for="username">Username</label>
+        <input class="fsr-only" id="username" type="text" name="username" placeholder="Enter username">
+      </div>
+      <div class="col-auto">
+        <label for="password">Password</label>
+        <input class="fsr-only" id="password" type="password" name="password" placeholder="Your password">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary" href="/signup">Create account</button>
+      </div>
+      <% if (typeof message !== "undefined") { %>
+        <div class="error-message"><%= message %></div>
+      <% } %>
+  </div>
 </form>
