@@ -6,13 +6,27 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const index = require('./routes/index');
-const users = require('./routes/users');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost:27017/guarderias', { useMongoClient: true });
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const configurePassport = require('./helpers/passport');
+const flash = require('connect-flash');
+
+const User = require('./models/user');
+
+const { url, db, port } = require('./config');
+
+mongoose.connect(`mongodb://${url}:${port}/${db}`, { useMongoClient: true });
+mongoose.Promise = global.Promise;
+
+const index = require('./routes/index');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,9 +43,26 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'our-passport-local-strategy-app',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 24 * 60 * 60 * 1000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60, // 1 day
+  }),
+}));
 
+configurePassport();
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/', auth);
 app.use('/', index);
 app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -39,7 +39,7 @@ const guarderiaSchema = new Schema({
     pic_name: String,
   }],
 
-  timestamp: { createdAt: 'created_at' },
+  // timestamp: { createdAt: 'created_at' },
   opinion_count: Number,
   parents: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
