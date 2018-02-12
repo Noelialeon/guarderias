@@ -11,9 +11,10 @@ const userSchema = new Schema({
   children: Number,
   profilepic_path: String,
   profilepic_name: String,
-  // timestamp: { createdAt: 'created_at' },
   opinion_count: Number,
   favourites: [{ type: Schema.Types.ObjectId, ref: 'Guarderia' }],
+}, {
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
 const User = mongoose.model('User', userSchema);
