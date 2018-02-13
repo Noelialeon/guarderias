@@ -38,10 +38,10 @@ const guarderiaSchema = new Schema({
     pic_path: String,
     pic_name: String,
   }],
-
-  // timestamp: { createdAt: 'created_at' },
   opinion_count: Number,
   parents: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+}, {
+  timestamp: { createdAt: 'created_at' },
 });
 
 const Guarderia = mongoose.model('Guarderia', guarderiaSchema);
