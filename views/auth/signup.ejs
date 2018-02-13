@@ -1,10 +1,31 @@
-<h2>Signup</h2>
+<h2>Crear una cuenta de usuario</h2>
 
-<form action="/signup" method="POST" id="form-container">
+<form action="/user/signup" method="POST" id="form-container">
   <div class="form-row align-items-center mx-auto" style="width: 800px;">
       <div class="col-auto">
         <label for="username">Username</label>
-        <input class="fsr-only" id="username" type="text" name="username" placeholder="Enter username">
+        <input class="fsr-only" id="username" type="text" name="username" placeholder="Super Mami">
+      </div>
+      <div class="col-auto">
+        <label for="password">Password</label>
+        <input class="fsr-only" id="password" type="password" name="password" placeholder="Your password">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary" href="/signup">Create account</button>
+      </div>
+      <% if (typeof message !== "undefined") { %>
+        <div class="error-message"><%= message %></div>
+      <% } %>
+  </div>
+</form>
+
+<h2>Crear una cuenta de guarderia</h2>
+
+<form action="/guarderia/signup" method="POST" id="form-container-guarderia">
+  <div class="form-row align-items-center mx-auto" style="width: 800px;">
+      <div class="col-auto">
+        <label for="username">Username</label>
+        <input class="fsr-only" id="username" type="text" name="username" placeholder="Guarderia Tirol">
       </div>
       <div class="col-auto">
         <label for="password">Password</label>

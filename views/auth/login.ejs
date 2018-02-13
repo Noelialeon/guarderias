@@ -1,11 +1,33 @@
 
-<h2>Login</h2>
+<h2>Accede como usuario</h2>
 
-<form action="/login" method="POST" id="form-container">
+<form action="/user/login" method="POST" id="form-container">
   <div class="form-row align-items-center mx-auto" style="width: 800px;">
       <div class="col-auto">
         <label for="username">Username</label>
-        <input class="fsr-only" id="username" type="text" name="username" placeholder="Enter username">
+        <input class="fsr-only" id="username" type="text" name="username" placeholder="Super mami">
+      </div>
+      <div class="col-auto">
+        <label for="password">Password</label>
+        <input class="fsr-only" id="password" type="password" name="password" placeholder="Your password">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary" href="/login">Log in</button>
+      </div>
+      <% if (typeof message !== "undefined") { %>
+        <div class="error-message"><%= message %></div>
+      <% } %>
+  </div>
+</form>
+
+
+<h2>Accede como guarderia</h2>
+
+<form action="/guarderia/login" method="POST" id="form-container-guarderia">
+  <div class="form-row align-items-center mx-auto" style="width: 800px;">
+      <div class="col-auto">
+        <label for="username">Username</label>
+        <input class="fsr-only" id="username" type="text" name="username" placeholder="Guarderia Tirol">
       </div>
       <div class="col-auto">
         <label for="password">Password</label>
