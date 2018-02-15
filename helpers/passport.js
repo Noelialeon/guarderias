@@ -16,7 +16,7 @@ function configurePassport() {
     });
   });
 
-  passport.use(new LocalStrategy({
+  const myLocalStrategy1 = new LocalStrategy({
     passReqToCallback: true,
   }, (req, username, password, next) => {
     User.findOne({ username }, (err, user) => {
@@ -32,7 +32,9 @@ function configurePassport() {
 
       return next(null, user);
     });
-  }));
+  });
+
+  passport.use('local.one', myLocalStrategy1);
 }
 
 module.exports = configurePassport;
