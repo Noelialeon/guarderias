@@ -7,16 +7,17 @@ $(document).ready(() => {
     lat: 41.385064,
     lng: 2.173403,
   };
+  var currentCountry = " España";
 
   function geocodeAddress() {
-    const address = document.getElementById('address').value;
+    const address = document.getElementById('address').value + currentCountry;
 
     geocoder.geocode({ address }, (results, status) => {
       if (status === 'OK') {
         const latit = results[0].geometry.location.lat();
         const long = results[0].geometry.location.lng();
         map.setCenter({lat: latit, lng: long})        
-        console.log(latit, long, map.center);
+        console.log(address);
       } else {
         alert(`Geocode was not successful for the following reason: ${status}`);
       }
