@@ -17,7 +17,8 @@ $(document).ready(() => {
       if (status === 'OK') {
         const latit = results[0].geometry.location.lat();
         const long = results[0].geometry.location.lng();
-        map.setCenter({lat: latit, lng: long})        
+        map.setCenter({lat: latit, lng: long});
+        map.setZoom(15);        
         console.log(address);
       } else {
         alert(`Geocode was not successful for the following reason: ${status}`);
@@ -83,26 +84,25 @@ $(document).ready(() => {
   // }
 
 
-  function searchNearest () {
-    $.ajax({
-      url: "http://localhost:3000/chargeGuarderiasDB/search?lat=" + center.lat + "&lng=" + center.lng + "&dis=500",
-      method: 'GET',
-      success: function(guarderia) {
-        console.log('guarderia', guarderia);
-        placeGuarderia(guarderia);
-      },
-      error: function(error) {
-        console.log('error'); 
-      }
-    });
-    chargeGuarderias();
-    
-  };
+  // function searchNearest () {
+  //   $.ajax({
+  //     url: "http://localhost:27017/guarderiaDB/search?lat=" + center.lat + "&lng=" + center.lng + "&dis=500",
+  //     method: 'GET',
+  //     success: function(guarderia) {
+  //       console.log('guarderia', guarderia);
+  //       placeGuarderia(guarderia);
+  //     },
+  //     error: function(error) {
+  //       console.log('error'); 
+  //     }
+  //   });
+  // };
 
   startMap();
 
   $('#geocode').submit(() => {
     geocodeAddress();
+    chargeGuarderias();
     event.preventDefault();
   });
 });
