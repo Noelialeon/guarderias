@@ -1,13 +1,14 @@
 /* eslint-disable */
 $(document).ready(() => {
   var map;
-  var geocoder = new google.maps.Geocoder();
+  const geocoder = new google.maps.Geocoder();
   var pos;
   var center = {
     lat: 41.385064,
     lng: 2.173403,
   };
-  var currentCountry = " España";
+  const currentCountry = " España";
+  var markers = [];
 
   function geocodeAddress() {
     const address = document.getElementById('address').value + currentCountry;
@@ -24,51 +25,28 @@ $(document).ready(() => {
     });
   }
   
-  // function chargeGuarderias() {
-  //   $.ajax({
-  //     url: 'http://localhost:27017/guarderias',
-  //     method: 'GET',
-  //     success(response) {
-  //       response.forEach((guarderia) => {
-  //         // console.log(guarderia);
-  //         guarderia = new google.maps.Marker({
-  //           position: {
-  //             lat: guarderia.location.coordinates[1],
-  //             lng: guarderia.location.coordinates[0],
-  //           },
-  //           map: map,
-  //           title: guarderia.name
-  //         });
-  //         marker.push(guarderia);
-  //       });
-  //     },
-  //     error(err) {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
-
-  // function currentPosition() {
-    // chargeGuarderias();
-  //   const currentMarker = new google.maps.Marker({ map });
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       pos = {
-  //         lat: position.coords.latitude,
-  //         lng: position.coords.longitude,
-  //       };
-
-  //       currentMarker.setPosition(pos);
-  //       currentMarker.setContent('Location found.');
-  //       map.setCenter(pos);
-  //     }, () => {
-  //       handleLocationError(true, currentMarker, map.getCenter());
-  //     });
-  //   } else {
-  //     // Browser doesn't support Geolocation
-  //     handleLocationError(false, currentMarker, map.getCenter());
-  //   }
-  // }
+  function chargeGuarderias() {
+    $.ajax({
+      url: 'http://localhost:3000/chargeGuarderiasDB',//montar aquí una ruta en la que me devuelva un json con la info de la DB mongo,
+      method: 'GET',
+      success(response) {
+        response.forEach((guarderia) => {
+          guarderia = new google.maps.Marker({
+            position: {
+              lat: guarderia.location.coordinates[1],
+              lng: guarderia.location.coordinates[0],
+            },
+            map: map,
+            title: guarderia.name
+          });
+          markers.push(guarderia);
+        });
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
+  }
 
   function startMap() {
     map = new google.maps.Map(
@@ -78,8 +56,6 @@ $(document).ready(() => {
         center: center,
       },
     );
-   
-    // currentPosition();
   }
 
   function deleteMarkers() {
@@ -90,10 +66,26 @@ $(document).ready(() => {
       Markers = [];
     });
   }
+  
+  // function placeguarderias(guarderias){
+  //   guarderias.forEach(function(guarderia){
+  //     var center = {
+  //       lat: guarderia.location.coordinates[1],
+  //       lng: guarderia.location.coordinates[0]
+  //     };
+  //     var pin = new google.maps.Marker({
+  //       position: center,
+  //       map: map,
+  //       title: guarderia.name
+  //     });
+  //     markers.push(pin)
+  //   });
+  // }
+
 
   function searchNearest () {
     $.ajax({
-      url: "http://localhost:3000/api/search?lat=" + center.lat + "&lng=" + center.lng + "&dis=500",
+      url: "http://localhost:3000/chargeGuarderiasDB/search?lat=" + center.lat + "&lng=" + center.lng + "&dis=500",
       method: 'GET',
       success: function(guarderia) {
         console.log('guarderia', guarderia);
@@ -103,6 +95,8 @@ $(document).ready(() => {
         console.log('error'); 
       }
     });
+    chargeGuarderias();
+    
   };
 
   startMap();
@@ -111,9 +105,4 @@ $(document).ready(() => {
     geocodeAddress();
     event.preventDefault();
   });
-
-  // $('#search').submit(() => {
-  //   searchAround();
-  //   event.preventDefault();
-  // });
 });
