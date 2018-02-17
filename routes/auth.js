@@ -37,7 +37,7 @@ router.post('/user/signup', (req, res, next) => {
       if (err) {
         res.render('auth/signup', { message: 'Something went wrong' });
       } else {
-        res.redirect('/');
+        res.redirect('/login');
       }
     });
   });
@@ -65,7 +65,7 @@ router.post('/guarderia/signup', (req, res, next) => {
       if (err) {
         res.render('auth/signup', { message: 'Something went wrong' });
       } else {
-        res.redirect('/');
+        res.redirect('/login');
       }
     });
   });
@@ -76,7 +76,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/user/login', passport.authenticate('local', {
-  successRedirect: '/user/edit',
+  successRedirect: '/users/edit',
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true,
@@ -84,7 +84,7 @@ router.post('/user/login', passport.authenticate('local', {
 
 
 router.post('/guarderia/login', passport.authenticate('local2', {
-  successRedirect: '/guarderia/edit',
+  successRedirect: '/guarderias/edit',
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true,
@@ -93,14 +93,6 @@ router.post('/guarderia/login', passport.authenticate('local2', {
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
-});
-
-router.get('/user/edit', (req, res) => {
-  res.render('user/edit', { user: req.user });
-});
-
-router.get('/guarderia/edit', (req, res) => {
-  res.render('guarderia/edit', { user: req.user });
 });
 
 module.exports = router;

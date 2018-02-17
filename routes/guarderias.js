@@ -20,8 +20,12 @@ router.post('/edit', (req, res, next) => {
 
   Guarderia.findByIdAndUpdate(guarderiaId, updates, (err, user) => {
     if (err) { return next(err); }
-    return res.redirect('/guarderia/edit');
+    return res.redirect('/guarderias/edit');
   });
+});
+
+router.get('/edit', (req, res) => {
+  res.render('guarderia/edit', { user: req.user });
 });
 
 module.exports = router;

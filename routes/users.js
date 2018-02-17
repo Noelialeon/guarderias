@@ -3,6 +3,10 @@ const router = express.Router();
 const User = require('../models/user');
 const Guarderia = require('../models/guarderia');
 
+router.get('/edit', (req, res) => {
+  res.render('user/edit', { user: req.user });
+});
+
 router.post('/edit', (req, res, next) => {
   const userId = req.user.id;
   const updates = {
@@ -12,7 +16,7 @@ router.post('/edit', (req, res, next) => {
   };
   User.findByIdAndUpdate(userId, updates, (err, user) => {
     if (err) { return next(err); }
-    return res.redirect('/user/edit');
+    return res.redirect('/users/edit');
   });
 });
 

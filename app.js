@@ -24,10 +24,12 @@ const { url, db, port } = require('./config');
 mongoose.connect(`mongodb://${url}:${port}/${db}`, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
-const index = require('./routes/index');
+const home = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const guarderias = require('./routes/guarderias');
+const listCollections = require('./routes/listCollections');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +38,7 @@ app.set('layout extractScripts', true); // see Documentation
 app.set('layout extractStyles', true); // see Documentation
 app.set('layout extractMetas', true); // see Documentation
 app.set('layout', 'layouts/main');
+app.set('layout extractScripts', true);
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(expressLayouts);
@@ -60,10 +63,11 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/', home);
 app.use('/', auth);
-app.use('/', index);
 app.use('/users', users);
 app.use('/guarderias', guarderias);
+app.use('/chargeGuarderiasDB', listCollections);
 
 
 // catch 404 and forward to error handler

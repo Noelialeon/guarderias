@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const FbStrategy = require('passport-facebook').Strategy;
 const User = require('../models/user');
 const Guarderia = require('../models/guarderia');
 
@@ -66,32 +65,5 @@ function configurePassport() {
   });
   passport.use('local2', myLocalStrategy2);
 }
-
-
-passport.use(new FbStrategy({
-  clientID: '443951352690510',
-  clientSecret: '2745628e88cfd1b32490ab7ea80afa00',
-  callbackURL: '/auth/facebook/callback',
-}, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ facebookID: profile.id }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
-
-    const newUser = new User({
-      facebookID: profile.id,
-    });
-
-    newUser.save((err) => {
-      if (err) {
-        return done(err);
-      }
-      done(null, newUser);
-    });
-  });
-}));
 
 module.exports = configurePassport;
