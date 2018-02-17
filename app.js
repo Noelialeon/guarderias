@@ -17,8 +17,6 @@ const passport = require('passport');
 const configurePassport = require('./helpers/passport');
 const flash = require('connect-flash');
 
-const User = require('./models/user');
-
 const { url, db, port } = require('./config');
 
 mongoose.connect(`mongodb://${url}:${port}/${db}`, { useMongoClient: true });

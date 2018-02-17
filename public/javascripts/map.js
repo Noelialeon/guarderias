@@ -7,11 +7,29 @@ $(document).ready(() => {
     lat: 41.385064,
     lng: 2.173403,
   };
-  const currentCountry = " España";
   var markers = [];
+  var currentInfoWindow = null;
+
+  const contentString = (name, description) => {
+    return (
+      `<div class="card-body">
+      <h5 class="card-title">${name}</h5>
+      <p class="card-text">Description</p>
+      <a href="#" class="card-link">Ver guadería</a></div></div>`);
+  };
+  
+  function startMap() {
+    map = new google.maps.Map(
+      document.getElementById('map'),
+      {
+        zoom: 15,
+        center: center,
+      },
+    );
+  }
 
   function geocodeAddress() {
-    const address = document.getElementById('address').value + currentCountry;
+    const address = document.getElementById('address').value;
 
     geocoder.geocode({ address }, (results, status) => {
       if (status === 'OK') {
@@ -24,39 +42,39 @@ $(document).ready(() => {
       }
     });
   }
-  
+
   function chargeGuarderias() {
     $.ajax({
-      url: 'http://localhost:3000/chargeGuarderiasDB',//montar aquí una ruta en la que me devuelva un json con la info de la DB mongo,
+      url: 'http://localhost:3000/chargeGuarderiasDB',
       method: 'GET',
       success(response) {
-        console.log(response);
         response.forEach((guarderia) => {
-          guarderia = new google.maps.Marker({
+          let pin = new google.maps.Marker({
             position: {
               lat: guarderia.location.coordinates[1],
               lng: guarderia.location.coordinates[0],
             },
             map: map,
-            title: guarderia.name
+            name: guarderia.name
           });
-          markers.push(guarderia);
+          const infowindow = new google.maps.InfoWindow({
+            content: contentString(pin.name),
+          });
+          pin.addListener('click', function() {
+            if (currentInfoWindow != null) { 
+              currentInfoWindow.close(); 
+          }          
+            infowindow.open(map, pin);
+            currentInfoWindow = infowindow; 
+          });
+          markers.push(pin);
         });
       },
+
       error(err) {
         console.log(err);
       },
     });
-  }
-
-  function startMap() {
-    map = new google.maps.Map(
-      document.getElementById('map'),
-      {
-        zoom: 15,
-        center: center,
-      },
-    );
   }
 
   function deleteMarkers() {
@@ -64,10 +82,10 @@ $(document).ready(() => {
       marker.setMap(null);
       marker = null;
 
-      Markers = [];
+      markers = [];
     });
   }
-  
+
   startMap();
 
   $('#geocode').submit(() => {

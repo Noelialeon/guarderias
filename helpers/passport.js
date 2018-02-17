@@ -8,7 +8,6 @@ function configurePassport() {
   passport.serializeUser((user, cb) => {
     /*eslint-disable */
     cb(null, { id: user._id, role: user.collection.collectionName} );
-    /*eslint-disable */
   });
 
   passport.deserializeUser((user, cb) => {
