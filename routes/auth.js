@@ -76,14 +76,15 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/user/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/user/edit',
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true,
 }));
 
+
 router.post('/guarderia/login', passport.authenticate('local2', {
-  successRedirect: '/',
+  successRedirect: '/guarderia/edit',
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true,
@@ -92,6 +93,14 @@ router.post('/guarderia/login', passport.authenticate('local2', {
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
+});
+
+router.get('/user/edit', (req, res) => {
+  res.render('user/edit', { user: req.user });
+});
+
+router.get('/guarderia/edit', (req, res) => {
+  res.render('guarderia/edit', { user: req.user });
 });
 
 module.exports = router;

@@ -1,0 +1,51 @@
+<h1>estas en guarderia - edit</h1>
+
+<h2>Edit <%= user.username %> 's profile</h2>
+
+<form action="/guarderias/edit" method="POST" id="form-container">
+    <div class="form-row align-items-center mx-auto" style="width: 800px;">
+        <div class="col-auto">
+          <label for="firstname">Name</label>
+          <input class="fsr-only" id="guarderia-name" type="text" name="name" value= '<%= user.name %>'>
+        </div>
+        <div class="col-auto">
+          <label for="lastname">Description</label>
+          <input class="fsr-only" id="guarderia-description" type="text" name="description" value= '<%= user.description %>'>
+        </div>
+        <div class="col-auto">
+          <label for="street">Calle</label>
+          <input class="fsr-only" id="guarderia-street" type="text" name="street" value= '<%= user.address.street %>'>
+        </div>
+        <div class="col-auto">
+          <label for="number">Número</label>
+          <input class="fsr-only" id="guarderia-streetnumber" type="text" name="streetnumber" value= '<%= user.address.number %>'>
+        </div>
+        <div class="col-auto">
+          <label for="postcode">Código Postal</label>
+          <input class="fsr-only" id="guarderia-postcode" type="number" name="postcode" value= '<%= user.address.postcode %>'>
+        </div>
+        <div class="col-auto">
+          <label for="city">Ciudad</label>
+          <input class="fsr-only" id="guarderia-city" type="text" name="city" value= '<%= user.address.city %>'>
+        </div>
+        <div class="col-auto">
+          <label for="telephone">Teléfono</label>
+          <input class="fsr-only" id="guarderia-telephone" type="number" name="telephone" value= '<%= user.telephone %>'>
+        </div>
+        <div class="col-auto">
+          <label for="email">E-mail</label>
+          <input class="fsr-only" id="guarderia-email" type="text" name="email" value= '<%= user.email %>'>
+        </div>
+        
+        <!-- <div class="col-auto">
+          <label for="children">Children</label>
+          <input class="fsr-only" id="user-lastname" type="number" name="children" placeholder= <%= user.children %>>
+          </div> -->
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary" href="/">Save changes</button>
+        </div>
+        <% if (typeof message !== "undefined") { %>
+          <div class="error-message"><%= message %></div>
+        <% } %>
+    </div>
+  </form>

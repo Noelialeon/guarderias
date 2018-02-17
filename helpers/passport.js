@@ -7,30 +7,35 @@ const Guarderia = require('../models/guarderia');
 
 function configurePassport() {
   passport.serializeUser((user, cb) => {
-    cb(null, user._id);
+    /*eslint-disable */
+    cb(null, { id: user._id, role: user.collection.collectionName} );
+    /*eslint-disable */
   });
 
-  passport.deserializeUser((id, cb) => {
-    User.findOne({ '_id': id }, (err, user) => {
+  passport.deserializeUser((user, cb) => {
+    if (user.role === 'guarderias') {      
+    Guarderia.findOne({ '_id': user.id }, (err, user) => {
       if (err) { return cb(err); }
       cb(null, user);
     });
-  });
+  } else if (user.role === 'users') {
+    User.findOne({ '_id': user.id }, (err, user) => {
+      if (err) { return cb(err); }
+      cb(null, user);
+    });
+  }});
 
   const myLocalStrategy = new LocalStrategy({
     passReqToCallback: true,
   }, (req, username, password, next) => {
     User.findOne({ username }, (err, user) => {
       if (err) {
-        console.log('entrando en iferror');
         return next(err);
       }
       if (!user) {
-        console.log('entrando en ifuser');
         return next(null, false, { message: 'Incorrect username' });
       }
       if (!bcrypt.compareSync(password, user.password)) {
-        console.log('entrando en bcrypt');
         return next(null, false, { message: 'Incorrect password' });
       }
 
@@ -44,7 +49,9 @@ function configurePassport() {
     passReqToCallback: true,
   }, (req, username, password, next) => {
     Guarderia.findOne({ username }, (err, user) => {
+      console.log('localstrategy2: ', user);
       if (err) {
+        
         return next(err);
       }
       if (!user) {

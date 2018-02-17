@@ -1,0 +1,24 @@
+<h2>Edit <%= user.username %> 's profile</h2>
+
+<form action="/users/edit" method="POST" id="form-container">
+    <div class="form-row align-items-center mx-auto" style="width: 800px;">
+        <div class="col-auto">
+          <label for="firstname">First Name</label>
+          <input class="fsr-only" id="user-firstname" type="text" name="firstname" value= '<%= user.firstname %>'>
+        </div>
+        <div class="col-auto">
+          <label for="lastname">Last Name</label>
+          <input class="fsr-only" id="user-lastname" type="text" name="lastname" value= '<%= user.lastname %>'>
+        </div>
+        <div class="col-auto">
+          <label for="children">Children</label>
+          <input class="fsr-only" id="user-children" type="number" name="children" value= '<%= user.children %>'>
+          </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary" href="/">Save changes</button>
+        </div>
+        <% if (typeof message !== "undefined") { %>
+          <div class="error-message"><%= message %></div>
+        <% } %>
+    </div>
+  </form>

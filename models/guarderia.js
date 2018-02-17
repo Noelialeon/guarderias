@@ -26,6 +26,7 @@ const guarderiaSchema = new Schema({
     street: String,
     number: Number,
     postcode: Number,
+    city: String,
   },
   address_other: {
     stair: String,
