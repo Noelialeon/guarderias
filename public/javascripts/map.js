@@ -10,22 +10,33 @@ $(document).ready(() => {
   var markers = [];
   var currentInfoWindow = null;
 
-  const contentString = (name, description) => {
+  //Añadir aquí la info que se muestra en la tarjeta aquí:
+  const contentString = (pin) => {
+    console.log('pins are: ', pin);
     return (
       `<div class="card-body">
-      <h5 class="card-title">${name}</h5>
+      <h5 class="card-title">${pin.name}</h5>
       <p class="card-text">Description</p>
-      <a href="#" class="card-link">Ver guadería</a></div></div>`);
+      <a href="/profile/${pin._id}" class="card-link">Ver guadería</a></div></div>`);
   };
   
   function startMap() {
     map = new google.maps.Map(
-      document.getElementById('map'),
-      {
+      document.getElementById('map'),{
         zoom: 15,
         center: center,
-      },
+      }
     );
+    var noPoi = [
+      {
+          featureType: "poi",
+          stylers: [
+            { visibility: "off" }
+          ],
+        }
+      ];
+      
+      map.setOptions({styles: noPoi});
   }
 
   function geocodeAddress() {
@@ -58,7 +69,7 @@ $(document).ready(() => {
             name: guarderia.name
           });
           const infowindow = new google.maps.InfoWindow({
-            content: contentString(pin.name),
+            content: contentString(pin),
           });
           pin.addListener('click', function() {
             if (currentInfoWindow != null) { 
@@ -75,6 +86,7 @@ $(document).ready(() => {
         console.log(err);
       },
     });
+    console.log('Markers are: ', markers);
   }
 
   function deleteMarkers() {
