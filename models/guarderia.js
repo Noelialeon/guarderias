@@ -7,6 +7,7 @@ const guarderiaSchema = new Schema({
   username: String,
   password: String,
   name: String,
+  quality: Number,
   description: String,
   facilities: {
     swimming_pool: Boolean,
@@ -27,6 +28,7 @@ const guarderiaSchema = new Schema({
     number: String,
     postcode: String,
     city: String,
+    coordinates: [],
   },
   address_other: {
     stair: String,

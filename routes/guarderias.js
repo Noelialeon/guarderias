@@ -13,11 +13,11 @@ router.post('/edit', (req, res, next) => {
       number: req.body.streetnumber,
       postcode: req.body.postcode,
       city: req.body.city,
+      coordinates: [req.body.longitude, req.body.latitude],
     },
     telephone: req.body.telephone,
     email: req.body.email,
   };
-
   Guarderia.findByIdAndUpdate(guarderiaId, updates, (err, user) => {
     if (err) { return next(err); }
     return res.redirect('/guarderias/edit');

@@ -12,12 +12,12 @@ $(document).ready(() => {
 
   //Añadir aquí la info que se muestra en la tarjeta aquí:
   const contentString = (pin) => {
-    console.log('pins are: ', pin);
     return (
       `<div class="card-body">
       <h5 class="card-title">${pin.name}</h5>
-      <p class="card-text">Description</p>
-      <a href="/profile/${pin._id}" class="card-link">Ver guadería</a></div></div>`);
+      <p class="card-text">${pin.description}</p>
+      <p class="card-text">${pin.city}</p>      
+      <a href="/profile/${pin.id}" class="card-link">Ver guadería</a></div></div>`);
   };
   
   function startMap() {
@@ -62,11 +62,14 @@ $(document).ready(() => {
         response.forEach((guarderia) => {
           let pin = new google.maps.Marker({
             position: {
-              lat: guarderia.location.coordinates[1],
-              lng: guarderia.location.coordinates[0],
+              lat: parseFloat(guarderia.address.coordinates[1]),
+              lng: parseFloat(guarderia.address.coordinates[0]),
             },
             map: map,
-            name: guarderia.name
+            name: guarderia.name,
+            description: guarderia.description,
+            city: guarderia.address.city,
+            id: guarderia._id,            
           });
           const infowindow = new google.maps.InfoWindow({
             content: contentString(pin),
@@ -86,7 +89,6 @@ $(document).ready(() => {
         console.log(err);
       },
     });
-    console.log('Markers are: ', markers);
   }
 
   function deleteMarkers() {
