@@ -1,34 +1,19 @@
 <h1>Encuentra tu guarderia</h1>
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Geocode</h5>
-    <form id="geocode">
-      <input id="address" type="" name="address" placeholder="address">
-      <input type="submit" name="">
-    </form>
-    <br>
-    <form id="filter">
-      <input type="checkbox" id="garden-checkbox" name="garden"> Garden
-      <input type="submit" name="" value="Filtrar">
+    <form action="/guarderias-search" method="POST" id="to-search">
+      <h5 class="card-title">Indica tu dirección</h5>
+      <div class="col-auto">
+        <input class="fsr-only" id="address" type="text" name="address">
+      </div>
+      <br>
+      <div class="col-auto">
+        <button type="submit" class="btn">Search</button>
+      </div>
     </form>
   </div>
-  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-    <div class="btn-group mr-2" role="group" aria-label="First group">
-      <button type="button" class="btn btn-secondary" id="charge-map" href="">Ver mapa</button>
-    </div>
-    <div class="btn-group mr-2" role="group" aria-label="Second group">
-      <button type="button" class="btn btn-secondary" id="charge-list">Ver listado</button>
-    </div>
-  </div>
 </div>
-<div class="container-fluid">
-  <div id="map" class="map"></div>
-</div>
-
 <br>
-<div class="card-deck" id="guarderias-list">
- 
+<div class="card-deck" id="home-gallery">
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmAaV_00mo5m_4oF2s67nGkGpdjn2dYpw"></script>
-<script type="text/javascript" src="/javascripts/map.js"></script>
-<script type="text/javascript" src="/javascripts/list-guarderias.js"></script>
+<script type="text/javascript" src="/javascripts/home-gallery.js"></script>

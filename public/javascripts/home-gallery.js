@@ -25,24 +25,11 @@ $(document).ready(() => {
         <a href="/profile/${guarderia._id}" class="card-link">Ver guadería</a>
       </div>
     </div>`;
-      $("#guarderias-list").append(guarderiaCard);
+      $("#home-gallery").append(guarderiaCard);
       totalList.push(guarderia);
     });
   };
 
-   $('#charge-list').on("click", () => {
-    event.preventDefault();
-    $("#map").hide();
-    $("#guarderias-list").show();
-    if (totalList == 0) {
-      chargeGuarderias();
-    }
-  });
+  chargeGuarderias();
 
-  $('#charge-map').on("click", () => {
-    event.preventDefault();
-    $("#map").show();
-    $("#guarderias-list").hide();
-
-  });
 });

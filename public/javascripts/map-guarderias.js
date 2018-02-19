@@ -37,6 +37,8 @@ $(document).ready(() => {
     ];
 
     map.setOptions({ styles: noPoi });
+    geocodeAddress();
+    chargeGuarderias();
   }
 
   function geocodeAddress() {

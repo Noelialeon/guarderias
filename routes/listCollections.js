@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
   });
 });
 module.exports = router;
-//terminar search para que coja la url
+
+// terminar search para que coja la url - Thor
 router.get('/search', (req, res) => {
   const { filter } = req.query;
   Guarderias.where('filter')
