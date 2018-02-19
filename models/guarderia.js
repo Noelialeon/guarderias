@@ -11,7 +11,7 @@ const guarderiaSchema = new Schema({
   description: String,
   facilities: {
     swimming_pool: Boolean,
-    garden: Boolean,
+    garden: { type: Boolean },
     meters: Number,
   },
   services: {

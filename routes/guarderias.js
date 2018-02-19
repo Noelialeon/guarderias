@@ -15,6 +15,9 @@ router.post('/edit', (req, res, next) => {
       city: req.body.city,
       coordinates: [req.body.longitude, req.body.latitude],
     },
+    facilities: {
+      garden: req.body.garden,
+    },
     telephone: req.body.telephone,
     email: req.body.email,
   };

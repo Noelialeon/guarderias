@@ -36,12 +36,16 @@
     <div class="col-auto" id="verifyAddressBlock">
       <button type="submit" id="verifyAddress" class="btn btn-primary">Verify address</button>
       <p id="found" style="display: none;">La dirección es correcta</p>
-      <p id="not-found" style="display: none;">La dirección no es correcta, prueba otra vez</p>      
+      <p id="not-found" style="display: none;">La dirección no es correcta, prueba otra vez</p>
     </div>
 
     <div class="col-auto">
       <label for="telephone">Teléfono</label>
       <input class="fsr-only" id="guarderia-telephone" type="text" name="telephone" value='<%= user.telephone %>'>
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" name="garden" value="garden" >Garden
+      <br>
     </div>
     <div class="col-auto">
       <label for="email">E-mail</label>
