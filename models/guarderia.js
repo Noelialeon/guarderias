@@ -10,9 +10,9 @@ const guarderiaSchema = new Schema({
   quality: Number,
   description: String,
   facilities: {
-    swimming_pool: Boolean,
+    swimming_pool: { type: Boolean },
     garden: { type: Boolean },
-    meters: Number,
+    meters: { type: Number },
   },
   services: {
     languages: {

@@ -22,13 +22,14 @@ module.exports = router;
 
 // terminar search para que coja la url - Thor
 router.get('/search', (req, res) => {
-  const { filter } = req.query;
-  Guarderias.where('filter')
-    .find((error, restaurants) => {
+  const { garden } = req.query;
+  const { swimmingPool } = req.query;
+  Guarderias.where('facilities.garden', garden).where('facilities.swimming_pool', swimmingPool)
+    .find((error, guarderias) => {
       if (error) {
         res.status(500).json({ message: error });
       } else {
-        res.status(200).json(restaurants);
+        res.status(200).json(guarderias);
       }
     });
 });

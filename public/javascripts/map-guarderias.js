@@ -68,6 +68,7 @@ $(document).ready(() => {
   }
 
   function placeGuarderias(response){
+
     response.forEach((guarderia) => {
       let pin = new google.maps.Marker({
         position: {
@@ -91,24 +92,24 @@ $(document).ready(() => {
     });
   }
 
-  // function filterGuarderias() {
-  //   var garden = $("#garden-checkbox").is(':checked') ? true : false;
-  //   console.log(garden);
-  //   var url = "http://localhost:3000/chargeGuarderiasDB/search?facilities.garden=" + garden;
-  //   console.log(url);
-  //   $.ajax({
-  //     url: url,
-  //     method: 'GET',
-  //     success: function (guarderias) {
-  //       console.log('guarderias', guarderias);
-  //       deleteMarkers();
-  //       placeGuarderias(guarderias);
-  //     },
-  //     error: function (error) {
-  //       console.log('error');
-  //     }
-  //   });
-  // }
+  function filterGuarderias() {
+    var garden = $("#garden-checkbox").is(':checked') ? true : false;
+    var swimmingPool = $("#swimming_pool-checkbox").is(':checked') ? true : false;
+    var url = "http://localhost:3000/chargeGuarderiasDB/search?garden=" + garden + "&swimmingPool=" + swimmingPool;
+    console.log(url);
+    $.ajax({
+      url: url,
+      method: 'GET',
+      success: function (guarderias) {
+        console.log('guarderias', guarderias);
+        deleteMarkers();
+        placeGuarderias(guarderias);
+      },
+      error: function (error) {
+        console.log('error');
+      }
+    });
+  }
 
   function deleteMarkers() {
     markers.forEach((marker) => {
@@ -127,8 +128,8 @@ $(document).ready(() => {
     chargeGuarderias();
   });
 
-  // $('#filter').submit(() => {
-  //   event.preventDefault();
-  //   filterGuarderias();
-  // });
+  $('#filter').submit(() => {
+    event.preventDefault();
+    filterGuarderias();
+  });
 });

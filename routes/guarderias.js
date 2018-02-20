@@ -17,6 +17,7 @@ router.post('/edit', (req, res, next) => {
     },
     facilities: {
       garden: req.body.garden,
+      swimming_pool: req.body.swimming_pool,
     },
     telephone: req.body.telephone,
     email: req.body.email,
