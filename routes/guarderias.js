@@ -3,6 +3,10 @@ const router = express.Router();
 const User = require('../models/user');
 const Guarderia = require('../models/guarderia');
 
+router.get('/edit', (req, res) => {
+  res.render('guarderia/edit', { user: req.user });
+});
+
 router.post('/edit', (req, res, next) => {
   const guarderiaId = req.user.id;
   const updates = {
@@ -28,8 +32,16 @@ router.post('/edit', (req, res, next) => {
   });
 });
 
-router.get('/edit', (req, res) => {
-  res.render('guarderia/edit', { user: req.user });
+router.get('/profile/:_id', (req, res, next) => {
+  Guarderia
+    .findOne({ _id: req.params._id })
+    .exec((err, user) => {
+      if (!user) {
+        next(err);
+      }
+      res.render('guarderia/profile', { guarderia: user });
+    });
 });
+
 
 module.exports = router;

@@ -1,0 +1,27 @@
+<!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+<div class="card-body">
+  <p>Welcome <%=guarderia.name%>
+  </p>
+    <div id="address">Address:
+      <%=guarderia.address.street%>
+        <%=guarderia.address.number%>
+          <%=guarderia.address.postcode%>
+            <%=guarderia.address.city%>
+    </div>
+    <div id="facilities">Facilities:
+      <p>Piscina
+        <%=guarderia.facilities.swimming_pool%>
+      </p>
+      <p>Jardín
+        <%=guarderia.facilities.garden%>
+      </p>
+      <p>Piscina
+        <%=guarderia.facilities.swimming_pool%>
+      </p>
+    </div>
+    <div class="container-fluid">
+      <div id="map-profile" class="map-profile"></div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmAaV_00mo5m_4oF2s67nGkGpdjn2dYpw"></script>
+    <script type="text/javascript" src="/javascripts/map-profile-guarderia.js"></script>

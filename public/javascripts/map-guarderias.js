@@ -16,8 +16,8 @@ $(document).ready(() => {
       `<div class="card-body">
       <h5 class="card-title">${pin.guarderia.name}</h5>
       <p class="card-text">${pin.guarderia.description}</p>
-      <p class="card-text">${pin.guarderia.address.city}</p>      
-      <a href="/profile/${pin.guarderia._id}" class="card-link">Ver guadería</a></div></div>`);
+      <p class="card-text">${pin.guarderia.address.city}</p>
+      <a href="/guarderias/profile/${pin.guarderia._id}" class="card-link">Ver guadería</a></div></div>`);
   };
 
   function startMap() {
