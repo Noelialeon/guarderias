@@ -2,6 +2,17 @@
 
 <h2>Edit <%= user.username %> 's profile</h2>
 
+<section>
+  <img src="<%= user.profilepic_path %>" alt="<%= user.profilepic_name %>" />
+</section>
+
+<h2>Upload your photo</h2>
+<form action="/guarderias/upload" method="post" enctype="multipart/form-data">
+  <input type="text" name="name">
+  <input type="file" name="photo">
+  <input type="submit" value="Save">
+</form>    
+
 <form action="/guarderias/edit" method="POST" id="form-container">
     <div class="form-row align-items-center mx-auto" style="width: 800px;">
         <div class="col-auto">
@@ -36,11 +47,6 @@
           <label for="email">E-mail</label>
           <input class="fsr-only" id="guarderia-email" type="text" name="email" value= '<%= user.email %>'>
         </div>
-        
-        <!-- <div class="col-auto">
-          <label for="children">Children</label>
-          <input class="fsr-only" id="user-lastname" type="number" name="children" placeholder= <%= user.children %>>
-          </div> -->
         <div class="col-auto">
           <button type="submit" class="btn btn-primary" href="/">Save changes</button>
         </div>

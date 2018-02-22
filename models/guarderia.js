@@ -35,10 +35,8 @@ const guarderiaSchema = new Schema({
   },
   telephone: Number,
   email: String,
-  pictures: [{
-    pic_path: String,
-    pic_name: String,
-  }],
+  profilepic_path: { type: String, default: './public/uploads/ce0f57b0a10e5e21c0863de5be5000dc' },
+  profilepic_name: { type: String, default: 'default_pic' },
   opinion_count: Number,
   parents: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 }, {

@@ -17,7 +17,7 @@ const passport = require('passport');
 const configurePassport = require('./helpers/passport');
 const flash = require('connect-flash');
 
-const User = require('./models/user');
+const multer = require('multer');
 
 const { url, db, port } = require('./config');
 

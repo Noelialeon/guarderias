@@ -4,15 +4,14 @@ const Schema = mongoose.Schema;
 /*eslint-disable */
 const Guarderia = require('./guarderia.js');
 
-
 const userSchema = new Schema({
   username: String,
   password: String,
   firstname: String,
   lastname: String,
   children: Number,
-  profilepic_path: String,
-  profilepic_name: String,
+  profilepic_path: { type: String, default: './public/uploads/ce0f57b0a10e5e21c0863de5be5000dc' },
+  profilepic_name: { type: String, default: 'default_pic' },
   opinion_count: Number,
   favourites: [{ type: Schema.Types.ObjectId, ref: 'Guarderia' }],
 }, {
