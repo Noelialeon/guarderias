@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-/*eslint-disable */
+/* eslint-disable */
 const Schema = mongoose.Schema;
-/*eslint-disable */
+/* eslint-enable */
 const Guarderia = require('./guarderia.js');
 
 
@@ -13,7 +13,7 @@ const userSchema = new Schema({
   children: Number,
   profilepic_path: String,
   profilepic_name: String,
-  opinion_count: Number,
+  opinion_count: [{ type: Number }],
   favourites: [{ type: Schema.Types.ObjectId, ref: 'Guarderia' }],
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },

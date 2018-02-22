@@ -31,7 +31,6 @@ $(document).ready(() => {
 
   function geocodeAddress() {
     const address = document.getElementById('address').innerHTML
-    console.log(address);
 
     geocoder.geocode({ address }, (results, status) => {
       if (status === 'OK') {

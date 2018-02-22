@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+/* eslint-disable */
 const Schema = mongoose.Schema;
+/* eslint-enable */
 const Guarderia = require('./guarderia.js');
 const User = require('./user.js');
 

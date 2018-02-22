@@ -96,12 +96,10 @@ $(document).ready(() => {
     var garden = $("#garden-checkbox").is(':checked') ? true : false;
     var swimmingPool = $("#swimming_pool-checkbox").is(':checked') ? true : false;
     var url = "http://localhost:3000/chargeGuarderiasDB/search?garden=" + garden + "&swimmingPool=" + swimmingPool;
-    console.log(url);
     $.ajax({
       url: url,
       method: 'GET',
       success: function (guarderias) {
-        console.log('guarderias', guarderias);
         deleteMarkers();
         placeGuarderias(guarderias);
       },

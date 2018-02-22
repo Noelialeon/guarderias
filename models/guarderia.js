@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+/* eslint-disable */
 const Schema = mongoose.Schema;
-const User = require('./user.js');
-
+/* eslint-enable */const User = require('./user.js');
+const Opinion = require('./opinion.js');
 
 const guarderiaSchema = new Schema({
   username: String,
@@ -21,7 +22,7 @@ const guarderiaSchema = new Schema({
       german: Boolean,
     },
     fieldtrip: Boolean,
-  // Añadir servicios
+    // Añadir servicios
   },
   address: {
     street: String,
@@ -41,7 +42,7 @@ const guarderiaSchema = new Schema({
     pic_path: String,
     pic_name: String,
   }],
-  opinion_count: Number,
+  opinion_count: { type: Number },
   parents: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 }, {
   timestamp: { createdAt: 'created_at' },
