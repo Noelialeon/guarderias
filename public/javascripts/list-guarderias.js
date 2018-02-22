@@ -5,8 +5,11 @@ $(document).ready(() => {
   function chargeGuarderias() {
     var garden = $("#garden-checkbox").is(':checked') ? true : false;
     var swimmingPool = $("#swimming_pool-checkbox").is(':checked') ? true : false;
-    var url = "http://localhost:3000/chargeGuarderiasDB/search?garden=" + garden + "&swimmingPool=" + swimmingPool;
-    
+    if (!garden && !swimmingPool) {
+      var url = "http://localhost:3000/chargeGuarderiasDB"
+    } else {
+      var url = "http://localhost:3000/chargeGuarderiasDB/search?garden=" + garden + "&swimmingPool=" + swimmingPool;
+    }
     $.ajax({
       url: url,
       method: 'GET',
@@ -18,12 +21,12 @@ $(document).ready(() => {
         console.log(err);
       },
     });
-  }
-  
+  };
+
   function listGuarderias(response) {
     response.forEach((guarderia) => {
       var guarderiaCard =
-      `<div class="col-md-3 col-sm-6 col-xs-12">
+        `<div class="col-md-3 col-sm-6 col-xs-12">
       <div class="card">
       <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
       <div class="card-body">
@@ -46,7 +49,7 @@ $(document).ready(() => {
     $("#guarderias-list").empty();
   }
 
-   $('#charge-list').on("click", () => {
+  $('#charge-list').on("click", () => {
     event.preventDefault();
     $("#map").hide();
     $("#guarderias-list").show();
