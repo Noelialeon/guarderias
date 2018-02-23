@@ -39,9 +39,7 @@ $(document).ready(() => {
         map.setCenter({ lat: latit, lng: long });
         map.setZoom(15);
         placeGuarderia(latit,long);
-      } else {
-        alert(`Geocode was not successful for the following reason: ${status}`);
-      }
+      };
     });
   }
 

@@ -7,12 +7,12 @@ const Opinion = require('./opinion.js');
 const guarderiaSchema = new Schema({
   username: String,
   password: String,
-  name: String,
+  name: { type: String, default: 'Guarderia' },
   quality: Number,
-  description: String,
+  description: { type: String, default: 'Aún no se ha indicado' },
   facilities: {
-    swimming_pool: { type: Boolean },
-    garden: { type: Boolean },
+    swimming_pool: { type: Boolean, default: 'Aún no se ha indicado' },
+    garden: { type: Boolean, default: 'Aún no se ha indicado' },
     meters: { type: Number },
   },
   services: {
@@ -25,11 +25,11 @@ const guarderiaSchema = new Schema({
     // Añadir servicios
   },
   address: {
-    street: String,
-    number: String,
-    postcode: String,
-    city: String,
-    coordinates: [],
+    street: { type: String, default: 'Aún no se ha indicado' },
+    number: { type: String, default: '' },
+    postcode: { type: String, default: '' },
+    city: { type: String, default: '' },
+    coordinates: { type: [String], default: '' },
   },
   address_other: {
     stair: String,

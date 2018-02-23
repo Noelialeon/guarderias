@@ -50,9 +50,7 @@ $(document).ready(() => {
         const long = results[0].geometry.location.lng();
         map.setCenter({ lat: latit, lng: long });
         map.setZoom(15);
-      } else {
-        alert(`Geocode was not successful for the following reason: ${status}`);
-      }
+      };
     });
   }
 

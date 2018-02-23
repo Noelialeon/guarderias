@@ -38,6 +38,23 @@ router.post('/edit', (req, res, next) => {
   });
 });
 
+router.get('/private-profile/:_id', (req, res, next) => {
+  Guarderia
+    .findOne({ _id: req.params._id })
+    .exec((err, user) => {
+      if (!user) {
+        next(err);
+      }
+      Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name star_ranking created_at')
+        .sort({ created_at: -1 })
+        .exec((err, opinions) => {
+          console.log("guarderia is", user, "opinions are", opinions, "moment is", moment);
+          res.render('guarderia/profile', { guarderia: user, opinions, moment, err });
+
+        });
+    });
+});
+
 router.get('/profile/:_id', (req, res, next) => {
   Guarderia
     .findOne({ _id: req.params._id })
