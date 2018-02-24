@@ -116,7 +116,20 @@ router.post('/uploadpictures', upload.single('photo'), (req, res, next) =>{
   Guarderia.findById(guarderiaId, (err, guarderia) => {
     const path = `/uploads/${req.file.filename}`;
     guarderia.otherpics.push(path);  
-    console.log(guarderia);
+    guarderia.save((err) => {
+      if (err) {
+        console.error(err)
+      } else {
+        res.redirect('/guarderias/edit');
+      }
+    });
+  });
+})
+
+router.get('/deletepicture/:index', (req, res, next) => {
+  guarderiaId = req.user.id;
+  Guarderia.findById(guarderiaId, (err, guarderia) => {
+    guarderia.otherpics.splice(req.params, 1);  
     guarderia.save((err) => {
       if (err) {
         console.error(err)
