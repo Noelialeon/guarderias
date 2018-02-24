@@ -28,7 +28,7 @@ $(document).ready(() => {
       var guarderiaCard =
         `<div class="col-md-3 col-sm-6 col-xs-12">
       <div class="card">
-      <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+      <img class="card-img-top" src="${guarderia.profilepic_path}" alt="Card image cap">
       <div class="card-body">
       <h5 class="card-title">${guarderia.name}</h5>
       <p class="card-text">${guarderia.description}</p>

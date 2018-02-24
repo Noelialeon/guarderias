@@ -14,6 +14,7 @@ $(document).ready(() => {
   const contentString = (pin) => {
     return (
       `<div class="card-body">
+      <img class="card-img-top" src="${pin.guarderia.profilepic_path}" alt="Card image cap">
       <h5 class="card-title">${pin.guarderia.name}</h5>
       <p class="card-text">${pin.guarderia.description}</p>
       <p class="card-text">${pin.guarderia.address.city}</p>
