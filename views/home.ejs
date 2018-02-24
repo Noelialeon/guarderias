@@ -1,16 +1,19 @@
 <h1>Encuentra tu guarderia</h1>
-<div class="container-fluid">
-  <div id="map" class="map"></div>
-</div>
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Geocode</h5>
-    <form id="geocode">
-      <input id="address" type="" name="address" placeholder="address">
-      <input type="submit" name="">
+    <form action="/guarderias-search" method="POST" id="to-search">
+      <h5 class="card-title">Indica tu dirección</h5>
+      <div class="col-auto">
+        <input class="fsr-only" id="address" type="text" name="address">
+      </div>
+      <br>
+      <div class="col-auto">
+        <button type="submit" class="btn">Search</button>
+      </div>
     </form>
   </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTFL0kgfMqDmjlxVvKsQlN8-awbI_thj8"></script>
-<script type="text/javascript" src="/javascripts/map.js"></script>
-
+<br>
+<div class="card-deck" id="home-gallery">
+</div>
+<script type="text/javascript" src="/javascripts/home-gallery.js"></script>

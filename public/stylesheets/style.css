@@ -7,6 +7,11 @@ body {
     height: 500px;
   }
 
-a {
+  #map-profile {
+    height: 500px;
+    width: 400px;
+  }
+
+  a {
   color: #00B7FF;
 }

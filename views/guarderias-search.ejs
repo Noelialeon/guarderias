@@ -1,0 +1,35 @@
+<h1>
+  Encuentra tu guarderia</h1>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Indica tu dirección</h5>
+    <form id="geocode">
+      <input class="fsr-only" id="address" type="text" name="address" value='<%= address %>'>
+      <input type="submit" name="">
+    </form>
+    <br>
+    <h5 class="card-title">Especificaciones</h5>
+    <form id="filter">
+      <input type="checkbox" id="garden-checkbox" name="garden"> Jardín
+      <input type="checkbox" id="swimming_pool-checkbox" name="swimming_pool"> Piscina
+      <input type="submit" name="" value="submit">
+    </form>
+  </div>
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+      <button type="button" class="btn btn-secondary" id="charge-map" href="">Ver mapa</button>
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="Second group">
+      <button type="button" class="btn btn-secondary" id="charge-list">Ver listado</button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div id="map" class="map"></div>
+</div>
+<br>
+<div class="card-deck" id="guarderias-list">
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>
+<script type="text/javascript" src="/javascripts/map-guarderias.js"></script>
+<script type="text/javascript" src="/javascripts/list-guarderias.js"></script>

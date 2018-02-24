@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-/*eslint-disable */
+/* eslint-disable */
 const Schema = mongoose.Schema;
-/*eslint-disable */
+/* eslint-enable */
 const Guarderia = require('./guarderia.js');
 
 const userSchema = new Schema({
@@ -10,8 +10,8 @@ const userSchema = new Schema({
   firstname: String,
   lastname: String,
   children: Number,
-  profilepic_path: { type: String, default: './public/uploads/ce0f57b0a10e5e21c0863de5be5000dc' },
-  profilepic_name: { type: String, default: 'default_pic' },
+  profilepic_path: { type: String, default: '/uploads/ce0f57b0a10e5e21c0863de5be5000dc' },
+  profilepic_name: { type: String, default: 'default_user_pic' },
   opinion_count: Number,
   favourites: [{ type: Schema.Types.ObjectId, ref: 'Guarderia' }],
 }, {

@@ -1,17 +1,19 @@
 const mongoose = require('mongoose');
+/* eslint-disable */
 const Schema = mongoose.Schema;
-const User = require('./user.js');
-
+/* eslint-enable */const User = require('./user.js');
+const Opinion = require('./opinion.js');
 
 const guarderiaSchema = new Schema({
   username: String,
   password: String,
   name: String,
+  quality: Number,
   description: String,
   facilities: {
-    swimming_pool: Boolean,
-    garden: Boolean,
-    meters: Number,
+    swimming_pool: { type: Boolean },
+    garden: { type: Boolean },
+    meters: { type: Number },
   },
   services: {
     languages: {
@@ -20,13 +22,14 @@ const guarderiaSchema = new Schema({
       german: Boolean,
     },
     fieldtrip: Boolean,
-  // Añadir servicios
+    // Añadir servicios
   },
   address: {
     street: String,
     number: String,
     postcode: String,
     city: String,
+    coordinates: [],
   },
   address_other: {
     stair: String,
@@ -35,8 +38,9 @@ const guarderiaSchema = new Schema({
   },
   telephone: Number,
   email: String,
-  profilepic_path: { type: String, default: './public/uploads/ce0f57b0a10e5e21c0863de5be5000dc' },
+  profilepic_path: { type: String, default: '/uploads/c8dba076b1fba1ab4e1baf89b091b9c6' },
   profilepic_name: { type: String, default: 'default_pic' },
+  otherpics: [],
   opinion_count: Number,
   parents: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 }, {

@@ -10,8 +10,9 @@ router.get('/', (req, res, next) => {
   res.render('home', { title: 'Express' });
 });
 
-// router.get('/profile', authMiddleware('/login'), (req, res, next) => {
-//   res.render('profile');
-// });
+router.post('/guarderias-search', (req, res, next) => {
+  const { address } = req.body;
+  res.render('guarderias-search', { address });
+});
 
 module.exports = router;
