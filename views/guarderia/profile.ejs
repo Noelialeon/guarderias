@@ -47,7 +47,7 @@
             <% } %>
   </div>
   <div id="container">
-    <form action="/guarderias/profile/<%=guarderia._id%>" method="POST" id="new-opinion">
+    <form action="/guarderias/profile/<%=guarderia.username%>" method="POST" id="new-opinion">
       <label for="commentText">Nuevo comentario:</label>
       <input type="text" name="commentBody" placeholder="Escribe aquí tu opinión">
       <input type="number" name="starsRanking" placeholder="De 1 a 5">

@@ -40,6 +40,7 @@ function configurePassport() {
       return next(null, user);
     });
   });
+
   passport.use('local', myLocalStrategy);
 
 
@@ -47,7 +48,6 @@ function configurePassport() {
     passReqToCallback: true,
   }, (req, username, password, next) => {
     Guarderia.findOne({ username }, (err, user) => {
-      console.log('localstrategy2: ', user);
       if (err) {
         
         return next(err);
@@ -62,6 +62,7 @@ function configurePassport() {
       return next(null, user);
     });
   });
+
   passport.use('local2', myLocalStrategy2);
 }
 

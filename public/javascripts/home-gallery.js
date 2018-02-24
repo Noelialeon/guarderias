@@ -24,7 +24,7 @@ $(document).ready(() => {
             <p class="card-text">${guarderia.description}</p>
             <p class="card-text">Jardín ${guarderia.facilities.garden}</p>
             <p class="card-text">Piscina ${guarderia.facilities.swimming_pool}</p>
-            <a href="/guarderias/profile/${guarderia._id}" class="card-link">Ver guadería</a>
+            <a href="/guarderias/profile/${guarderia.username}" class="card-link">Ver guadería</a>
           </div>
         </div>
       </div>

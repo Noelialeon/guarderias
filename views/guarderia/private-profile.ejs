@@ -1,6 +1,6 @@
 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
 <div class="card-body">
-  <h1>Welcome
+  <h1>Welcome to your profile
     <%=guarderia.name%>
   </h1>
   <div id="address">Address:
@@ -16,8 +16,8 @@
     <p>Piscina
       <%=guarderia.facilities.swimming_pool%>
     </p>
+    <a href="/guarderias/edit">Edit profile</a>
 </div>
-<button class="btn btn-primary" href="/edit">Edit profile</button>
 <div class="container-fluid">
   <div id="map-profile" class="map-profile"></div>
   <h2> Comentarios acerca de
@@ -31,11 +31,13 @@
             <%= opinion.user_name %> dice:
           </strong>
           <br>
-          <p><%= opinion.comment %>
-          </p> 
-          <p>Puntuación: <%= opinion.star_ranking %> estrellas.
+          <p>
+            <%= opinion.comment %>
           </p>
-          <p class="date">Comentado el 
+          <p>Puntuación:
+            <%= opinion.star_ranking %> estrellas.
+          </p>
+          <p class="date">Comentado el
             <%= moment(opinion.created_at).format("LL, LTS") %>
           </p>
         </div>
@@ -47,21 +49,14 @@
             </div>
             <% } %>
   </div>
-  <div id="container">
-    <form action="/guarderias/profile/<%=guarderia._id%>" method="POST" id="new-opinion">
-      <label for="commentText">Nuevo comentario:</label>
-      <input type="text" name="commentBody" placeholder="Escribe aquí tu opinión">
-      <input type="number" name="starsRanking" placeholder="De 1 a 5">
-      <button class="button blue fright">Comentar</button>
-    </form>
-    <br>
-    <% if ( typeof(error) != "undefined") { %>
-      <div class="alert alert-danger" role="alert">
-        <%= error %>
-      </div>
-      <% } %>
-        <br>
-  </div>
+  <br>
+  <% if ( typeof(error) != "undefined") { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+      <br>
+</div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>
-  <script type="text/javascript" src="/javascripts/map-profile-guarderia.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>
+<script type="text/javascript" src="/javascripts/map-profile-guarderia.js"></script>

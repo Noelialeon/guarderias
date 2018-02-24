@@ -84,12 +84,13 @@ router.post('/user/login', passport.authenticate('local', {
 
 
 router.post('/guarderia/login', passport.authenticate('local2', {
-  successRedirect: '/guarderias/edit',
   failureRedirect: '/login',
   failureFlash: true,
   passReqToCallback: true,
-}));
-
+}), (req, res) => {
+  const url = req.user.username;
+  res.redirect(`/guarderias/private-profile/${url}`);
+});
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');

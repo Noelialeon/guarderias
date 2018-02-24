@@ -60,6 +60,16 @@ configurePassport();
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+    res.locals.isAuthenticated = req.isAuthenticated();
+    res.locals.currentUser = req.user;
+  } else {
+    res.locals.isAuthenticated = req.isAuthenticated();
+    res.locals.currentUser = null;
+  }
+  next();
+});
 
 app.use('/', home);
 app.use('/', auth);
