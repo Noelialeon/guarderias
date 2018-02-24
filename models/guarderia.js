@@ -40,11 +40,12 @@ const guarderiaSchema = new Schema({
   email: String,
   profilepic_path: { type: String, default: '/uploads/c8dba076b1fba1ab4e1baf89b091b9c6' },
   profilepic_name: { type: String, default: 'default_pic' },
-  otherpics: [],
+  otherpics: [String],
   opinion_count: Number,
   parents: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 }, {
   timestamp: { createdAt: 'created_at' },
+  usePushEach: true,
 });
 
 const Guarderia = mongoose.model('Guarderia', guarderiaSchema);

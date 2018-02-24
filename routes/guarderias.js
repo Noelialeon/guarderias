@@ -111,7 +111,21 @@ router.post('/profile/:username', (req, res, next) => {
     });
 });
 
-
+router.post('/uploadpictures', upload.single('photo'), (req, res, next) =>{
+  const guarderiaId = req.user.id;
+  Guarderia.findById(guarderiaId, (err, guarderia) => {
+    const path = `/uploads/${req.file.filename}`;
+    guarderia.otherpics.push(path);  
+    console.log(guarderia);
+    guarderia.save((err) => {
+      if (err) {
+        console.error(err)
+      } else {
+        res.redirect('/guarderias/edit');
+      }
+    });
+  });
+})
 
 
 module.exports = router;

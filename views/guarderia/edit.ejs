@@ -90,6 +90,13 @@
   <input type="submit" value="Save">
 </form>    
 
+<%user.otherpics.forEach((path) => { %>
+  <div class="col-md-4">
+    <div class="thumbnail">
+        <img src='<%= path %>' alt="Lights" style="width:100%">
+    </div>
+  </div>
+<% }) %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>
 <script type="text/javascript" src="/javascripts/guarderia-geocode.js"></script>
