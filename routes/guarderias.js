@@ -69,23 +69,19 @@ router.get('/private-profile/:username', authMiddlewareToPublic('/guarderias/pro
     });
 });
 
-router.get('/profile/:username', authMiddlewareToPrivate('/guarderias/private-profile/'),(req, res, next) => {
-  if (req.params.username === req.user.username) {
-    res.redirect(`/guarderias/private-profile/${req.params.username}`);
-  } else {
-    Guarderia
-      .findOne({ username: req.params.username })
-      .exec((err, user) => {
-        if (!user) {
-          next(err);
-        }
-        Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name star_ranking created_at')
-          .sort({ created_at: -1 })
-          .exec((err, opinions) => {
-            res.render('guarderia/profile', { guarderia: user, opinions, moment, err });
-          });
-      });
-  };
+router.get('/profile/:username', authMiddlewareToPrivate('/guarderias/private-profile/'), (req, res, next) => {
+  Guarderia
+    .findOne({ username: req.params.username })
+    .exec((err, user) => {
+      if (!user) {
+        next(err);
+      }
+      Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name star_ranking created_at')
+        .sort({ created_at: -1 })
+        .exec((err, opinions) => {
+          res.render('guarderia/profile', { guarderia: user, opinions, moment, err });
+        });
+    });
 });
 
 router.post('/profile/:username', (req, res, next) => {
@@ -111,11 +107,11 @@ router.post('/profile/:username', (req, res, next) => {
     });
 });
 
-router.post('/uploadpictures', upload.single('photo'), (req, res, next) =>{
+router.post('/uploadpictures', upload.single('photo'), (req, res, next) => {
   const guarderiaId = req.user.id;
   Guarderia.findById(guarderiaId, (err, guarderia) => {
     const path = `/uploads/${req.file.filename}`;
-    guarderia.otherpics.push(path);  
+    guarderia.otherpics.push(path);
     guarderia.save((err) => {
       if (err) {
         console.error(err)
@@ -129,7 +125,7 @@ router.post('/uploadpictures', upload.single('photo'), (req, res, next) =>{
 router.get('/deletepicture/:index', (req, res, next) => {
   guarderiaId = req.user.id;
   Guarderia.findById(guarderiaId, (err, guarderia) => {
-    guarderia.otherpics.splice(req.params, 1);  
+    guarderia.otherpics.splice(req.params, 1);
     guarderia.save((err) => {
       if (err) {
         console.error(err)
