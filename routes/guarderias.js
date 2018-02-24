@@ -5,6 +5,8 @@ const router = express.Router();
 const moment = require('moment');
 const User = require('../models/user');
 const Guarderia = require('../models/guarderia');
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 const Opinion = require('../models/opinion');
 
 const authMiddleware = require('../middlewares/auth');
@@ -98,4 +100,17 @@ router.post('/profile/:username', (req, res, next) => {
     });
   });
 
-  module.exports = router;
+router.post('/upload', upload.single('photo'), (req, res, next) => {
+  const guarderiaId = req.user.id;
+  Guarderia.findByIdAndUpdate(guarderiaId, {
+    profilepic_path: `/uploads/${req.file.filename}`,
+    profilepic_name: req.file.originalname,
+  }, (err, user) => {
+    if (err) { return next(err); }
+    return res.redirect('/guarderias/edit');
+  });
+});
+
+
+
+module.exports = router;

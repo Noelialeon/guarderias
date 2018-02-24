@@ -17,6 +17,8 @@ const passport = require('passport');
 const configurePassport = require('./helpers/passport');
 const flash = require('connect-flash');
 
+const multer = require('multer');
+
 const { url, db, port } = require('./config');
 
 mongoose.connect(`mongodb://${url}:${port}/${db}`, { useMongoClient: true });
