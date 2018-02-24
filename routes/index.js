@@ -4,7 +4,6 @@ const router = express.Router();
 const User = require('../models/user');
 
 const authMiddleware = require('../middlewares/auth');
-
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('home', { title: 'Express' });

@@ -1,0 +1,20 @@
+<!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+<div class="card-body">
+  <img src="<%=user.profilepic_path%>">
+  <div>
+    <h1>Estás en el perfil de
+      <%=user.username%>
+    </h1>
+  </div>
+  <p id="children">Tiene
+    <%=user.children%> hijo/s.
+  </p>
+</div>
+<br>
+<% if ( typeof(error) != "undefined") { %>
+  <div class="alert alert-danger" role="alert">
+    <%= error %>
+  </div>
+  <% } %>
+    <br>
+    </div>
