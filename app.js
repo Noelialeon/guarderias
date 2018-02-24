@@ -66,9 +66,11 @@ app.use((req, res, next) => {
   if (req.isAuthenticated()) {
     res.locals.isAuthenticated = req.isAuthenticated();
     res.locals.currentUser = req.user;
+    res.locals.role = req.session.passport.user.role;
   } else {
     res.locals.isAuthenticated = req.isAuthenticated();
     res.locals.currentUser = null;
+    res.locals.role = null;
   }
   next();
 });

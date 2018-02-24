@@ -12,8 +12,10 @@
 <body>
     <% if (!locals.currentUser) { %>
   <% include ../partials/header %>
-  <% } else{ %>
-  <% include ../partials/private %>
+  <% } else if(locals.role === "guarderias"){ %>
+  <% include ../partials/private-guarderias %>
+ <% } else { %>
+  <% include ../partials/private-user %>
  <% } %>
   <%- body %>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>

@@ -1,4 +1,3 @@
-<!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
 <div class="card-body">
   <img src="<%=user.profilepic_path%>">
   <div>
@@ -9,9 +8,9 @@
   <p id="children">Tienes
     <%=user.children%> hijo/s.
   </p>
-</div>
-<div>
-  <a href="/users/edit">Editar perfil</a>
+  <div>
+    <a href="/users/edit">Editar perfil</a>
+  </div>
 </div>
 <br>
 <% if ( typeof(error) != "undefined") { %>
