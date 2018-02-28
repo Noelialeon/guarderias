@@ -1,103 +1,156 @@
-<h1>estas en guarderia - edit</h1>
-
-<h2>Edit
-  <%= user.username %> 's profile</h2>
-
-<section>
-  <img src="<%= user.profilepic_path %>" alt="<%= user.profilepic_name %>" />
-</section>
-
-<h2>Upload your profile photo</h2>
-<form action="/guarderias/upload" method="post" enctype="multipart/form-data">
-  <input type="text" name="name">
-  <input type="file" name="photo">
-  <input type="submit" value="Save">
-</form>    
-
-<form action="/guarderias/edit" method="POST" id="form-container">
-  <div class="form-row align-items-center mx-auto" style="width: 800px;">
-    <div class="col-auto">
-      <label for="firstname">Name</label>
-      <input class="fsr-only" id="guarderia-name" type="text" name="name" value='<%= user.name %>'>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-2">
+      </br>
+      </br>
+      <section>
+        <img src="<%= user.profilepic_path %>" alt="<%= user.profilepic_name %>" />
+      </section>
     </div>
-    <div class="col-auto">
-      <label for="lastname">Description</label>
-      <input class="fsr-only" id="guarderia-description" type="text" name="description" value='<%= user.description %>'>
-    </div>
-    <div class="col-auto">
-      <label for="street">Calle</label>
-      <input class="fsr-only" id="guarderia-street" type="text" name="street" value='<%= user.address.street %>'>
-    </div>
-    <div class="col-auto">
-      <label for="number">Número</label>
-      <input class="fsr-only" id="guarderia-streetnumber" type="text" name="streetnumber" value='<%= user.address.number %>'>
-    </div>
-    <div class="col-auto">
-      <label for="postcode">Código Postal</label>
-      <input class="fsr-only" id="guarderia-postcode" type="text" name="postcode" value='<%= user.address.postcode %>'>
-    </div>
-    <div class="col-auto">
-      <label for="city">Ciudad</label>
-      <input class="fsr-only" id="guarderia-city" type="text" name="city" value='<%= user.address.city %>'>
-    </div>
-
-    <!-- Añadidos dos campos ocultos para guardar la latitud y la longitud del jquery-user al server -->
-    <input hidden id="latitude" type="" name="latitude" value='<%= user.address.coordinates[1] %>'>
-    <input hidden id="longitude" type="" name="longitude" value='<%= user.address.coordinates[0] %>'>
-    <div class="col-auto" id="verifyAddressBlock">
-      <button type="submit" id="verifyAddress" class="btn btn-primary">Verify address</button>
-      <p id="found" style="display: none;">La dirección es correcta</p>
-      <p id="not-found" style="display: none;">La dirección no es correcta, prueba otra vez</p>
-    </div>
-
-    <div class="col-auto">
-      <label for="telephone">Teléfono</label>
-      <input class="fsr-only" id="guarderia-telephone" type="text" name="telephone" value='<%= user.telephone %>'>
-    </div>
-    <div class="col-auto">
-      <input type="checkbox" name="garden" value="garden">Garden
-      <br>
-    </div>
-    <div class="col-auto">
-      <input type="checkbox" name="swimming_pool" value="swimming_pool">Swimming Pool
-      <br>
-    </div>
-    <div class="col-auto">
-      <label for="email">E-mail</label>
-      <input class="fsr-only" id="guarderia-email" type="text" name="email" value='<%= user.email %>'>
-    </div>
-
-    <!-- <div class="col-auto">
-      <label for="children">Children</label>
-      <input class="fsr-only" id="user-lastname" type="number" name="children" placeholder= <%= user.children %>>
-    </div> -->
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary">Save changes</button>
+    <div class="col-md-10 d-flex align-items-center">
+      <h2>
+        <%= user.username %>, edita tu perfil</h2>
     </div>
   </div>
-  <% if (typeof message !== "undefined") { %>
-    <div class="error-message">
-      <%= message %>
-    </div>
-    <% } %>
+  <hr>
+
+  <div class="container">
+    <form action="/guarderias/edit" method="POST" id="form-container">
+
+      <h4>Información</h4>
+      <div class="row justify-content-center">
+        <div class="row"></div>
+        <div class="col-sm-4">
+          <label for="firstname">Name</label>
+          <input class="form-control" id="guarderia-name" type="text" name="name" value='<%= user.name %>'>
+          </br>
+          <label for="lastname">Description</label>
+          <textarea class="form-control" id="guarderia-description" type="text" name="description" rows="4" placeholder="Describe tu guardería"
+            value='<%= user.description %>'></textarea>
+        </div>
+        <div class="col-md-4">
+          <label for="email">E-mail</label>
+          <input class="form-control" id="guarderia-email" type="text" name="email" value='<%= user.email %>'>
+          </br>
+          <label for="telephone">Teléfono</label>
+          <input class="form-control" id="guarderia-telephone" type="text" name="telephone" value='<%= user.telephone %>'>
+        </div>
       </div>
-</form>
 
-<h2>Upload more pictures</h2>
-<form action="/guarderias/uploadpictures" method="post" enctype="multipart/form-data">
-  <input type="text" name="name">
-  <input type="file" name="photo">
-  <input type="submit" value="Save">
-</form>    
+      <h4>Dirección</h4>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <label for="street">Calle</label>
+          <input class="form-control" id="guarderia-street" type="text" name="street" value='<%= user.address.street %>'>
+          </br>
+          <label for="postcode">Código Postal</label>
+          <input class="form-control" id="guarderia-postcode" type="text" name="postcode" value='<%= user.address.postcode %>'>
+          <div class="col-auto" id="verifyAddressBlock">
+            </br>
+            <p id="found" style="display: none;">La dirección es correcta</p>
+            <p id="not-found" style="display: none;">La dirección no es correcta, prueba otra vez</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="number">Número</label>
+          <input class="form-control" id="guarderia-streetnumber" type="text" name="streetnumber" value='<%= user.address.number %>'>
+          </br>
+          <label for="city">Ciudad</label>
+          <input class="form-control" id="guarderia-city" type="text" name="city" value='<%= user.address.city %>'>
+          <!-- Añadidos dos campos ocultos para guardar la latitud y la longitud del jquery-user al server -->
+          <input hidden id="latitude" type="" name="latitude" value='<%= user.address.coordinates[1] %>'>
+          <input hidden id="longitude" type="" name="longitude" value='<%= user.address.coordinates[0] %>'>
+          </br>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <button type="submit" id="verifyAddress" class="btn btn-block btn-outline-primary">Verifica tu dirección</button>
+        </div>
+      </div>
 
-<%user.otherpics.forEach(function(path, index, array){ %>
-  <div class="col-md-4">
-    <div class="thumbnail">
-        <img src='<%= path %>' alt="Lights" style="width:100%">
-        <a href="/guarderias/deletepicture/<%= index %>" class="btn" role="button">Delete picture</a>
+
+      <h4>Facilidades</h4>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <input type="checkbox" name="garden" value="garden">Jardín
+        </div>
+        <div class="col-md-4">
+          <input type="checkbox" name="swimming_pool" value="swimming_pool">Piscina
+        </div>
+      </div>
+      </br>
+      </br>
+
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Guardar cambios</button>
+          <% if (typeof message !== "undefined") { %>
+            <div class="error-message">
+              <%= message %>
+            </div>
+            <% } %>
+        </div>
+      </div>
+    </form>
+
+
+    <h5>Actualiza tu foto de perfil</h5>
+    <form action="/guarderias/upload" method="post" enctype="multipart/form-data">
+      <div class="row justify-content-center">
+        <div class="col-md-4 ">
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="text" name="name">
+              <input type="file" name="photo" class="custom-file-input" id="inputGroupFile04">
+              <label class="custom-file-label" for="inputGroupFile04">Elegir archivo</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-primary btn-block ">Guardar foto de perfil</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+    <h4>Carga más imagenes</h4>
+    <form action="/guarderias/uploadpictures" method="post" enctype="multipart/form-data">
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="text" name="name">
+              <input type="file" name="photo" class="custom-file-input" id="inputGroupFile04">
+              <label class="custom-file-label" for="inputGroupFile04">Elegir archivo</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-primary btn-block">Guardar imagen</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class=" w-50 p-3 d-flex align-items-end">
+        <%user.otherpics.forEach(function(path, index, array){ %>
+          <div class="col-md-4 ">
+            <div class="thumbnail">
+              <img src='<%= path %>' alt="Lights" style="width:100%">
+              <a href="/guarderias/deletepicture/<%= index %>" class="btn btn-outline-danger" role="button">Delete picture</a>
+            </div>
+          </div>
+          <% }) %>
+      </div>
     </div>
   </div>
-<% }) %>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>
-<script type="text/javascript" src="/javascripts/guarderia-geocode.js"></script>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>
+  <script type="text/javascript" src="/javascripts/guarderia-geocode.js"></script>

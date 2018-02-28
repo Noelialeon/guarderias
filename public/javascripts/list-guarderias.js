@@ -2,7 +2,7 @@
 $(document).ready(() => {
   var totalList = [];
 
-  function chargeGuarderias() {
+  function chargeGuarderiasList() {
     var garden = $("#garden-checkbox").is(':checked') ? true : false;
     var swimmingPool = $("#swimming_pool-checkbox").is(':checked') ? true : false;
     if (!garden && !swimmingPool) {
@@ -51,22 +51,23 @@ $(document).ready(() => {
 
   $('#charge-list').on("click", () => {
     event.preventDefault();
+    $("#filter").addClass("show-list");
     $("#map").hide();
     $("#guarderias-list").show();
     if (totalList == 0) {
-      chargeGuarderias();
+      chargeGuarderiasList();
     }
   });
 
   $('#charge-map').on("click", () => {
     event.preventDefault();
+    $("#filter").removeClass("show-list");    
     $("#map").show();
     $("#guarderias-list").hide();
   });
 
   $('#filter').submit(() => {
     event.preventDefault();
-    chargeGuarderias();
+    chargeGuarderiasList();
   });
-
 });

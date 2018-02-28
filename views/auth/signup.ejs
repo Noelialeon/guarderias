@@ -1,41 +1,55 @@
-<h2>Crear una cuenta de usuario</h2>
+<div class="container">
 
-<form action="/user/signup" method="POST" id="form-container">
-  <div class="form-row align-items-center mx-auto" style="width: 800px;">
-      <div class="col-auto">
-        <label for="username">Username</label>
-        <input class="fsr-only" id="user-username" type="text" name="username" placeholder="Super Mami">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card-register mx-auto">
+          <div class="card-body">
+            <h3 class="card-title">Crea una cuenta como usuario</h3>
+            <form action="/user/signup" method="POST" id="form-container">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" id="user-username" type="text" name="username" placeholder="Super mami">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="user-password" type="password" name="password" placeholder="Your password">
+              </div>
+              <div class="row">
+                <% if (typeof message !== "undefined") { %>
+                  <%= message %>
+                    <% } %>
+              </div>
+                <button type="submit" class="btn btn-register btn-primary btn-block">Crear cuenta</button>  
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="col-auto">
-        <label for="password">Password</label>
-        <input class="fsr-only" id="user-password" type="password" name="password" placeholder="Your password">
+
+      <div class="col-sm-6">
+        <div class="card-register mx-auto">
+          <div class="card-body">
+            <h3 class="card-title">Crea una cuenta de guarderia</h3>
+            <form action="/guarderia/signup" method="POST" id="form-container-guarderia">
+  
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" id="guarderia-username" type="text" name="username" placeholder="Super mami">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="guarderia-password" type="password" name="password" placeholder="Your password">
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                </div>
+                <% if (typeof message !== "undefined") { %>
+                  <%= message %>
+                    <% } %>
+              </div>
+                <button type="submit" class="btn btn-register btn-primary btn-block">Crear cuenta</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary" href="/signup">Create account</button>
-      </div>
-      <% if (typeof message !== "undefined") { %>
-        <div class="error-message"><%= message %></div>
-      <% } %>
+    </div>
   </div>
-</form>
-
-<h2>Crear una cuenta de guarderia</h2>
-
-<form action="/guarderia/signup" method="POST" id="form-container-guarderia">
-  <div class="form-row align-items-center mx-auto" style="width: 800px;">
-      <div class="col-auto">
-        <label for="username">Username</label>
-        <input class="fsr-only" id="guarderia-username" type="text" name="username" placeholder="Guarderia Tirol">
-      </div>
-      <div class="col-auto">
-        <label for="password">Password</label>
-        <input class="fsr-only" id="guarderia-password" type="password" name="password" placeholder="Your password">
-      </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary" href="/signup">Create account</button>
-      </div>
-      <% if (typeof message !== "undefined") { %>
-        <div class="error-message"><%= message %></div>
-      <% } %>
-  </div>
-</form>
