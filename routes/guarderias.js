@@ -8,8 +8,9 @@ const Guarderia = require('../models/guarderia');
 const multer = require('multer');
 const upload = multer({ dest: './public/uploads/' });
 const Opinion = require('../models/opinion');
+const authMiddlewareToPublic = require('../middlewares/auth-toPublic');
+const authMiddlewareToPrivate = require('../middlewares/auth-toPrivate');
 
-const authMiddleware = require('../middlewares/auth');
 const allOpinions = [];
 
 router.get('/edit', (req, res) => {
@@ -67,28 +68,34 @@ router.post('/edit', (req, res, next) => {
   });
 });
 
-router.get('/private-profile/:username', (req, res, next) => {
-
-  if (req.params.username === req.user.username) {
-    Guarderia
-      .findOne({ username: req.params.username })
-      .exec((err, user) => {
-        if (!user) {
-          next(err);
-        }
-        Opinion.find({ guarderia_username: user.username }, 'opinion comment user_name star_ranking created_at')
-          .sort({ created_at: -1 })
-          .exec((err, opinions) => {
-            console.log("guarderia is", user, "opinions are", opinions, "moment is", moment);
-            res.render('guarderia/private-profile', { guarderia: user, opinions, moment, err });
-          });
-      });
-  } else {
-    res.redirect('/login');
-  }
+router.post('/upload', upload.single('photo'), (req, res, next) => {
+  const guarderiaId = req.user.id;
+  Guarderia.findByIdAndUpdate(guarderiaId, {
+    profilepic_path: `/uploads/${req.file.filename}`,
+    profilepic_name: req.file.originalname,
+  }, (err, user) => {
+    if (err) { return next(err); }
+    return res.redirect('/guarderias/edit');
+  });
 });
 
-router.get('/profile/:username', (req, res, next) => {
+
+router.get('/private-profile/:username', authMiddlewareToPublic('/guarderias/profile/'), (req, res, next) => {
+  Guarderia
+    .findOne({ username: req.params.username })
+    .exec((err, user) => {
+      if (!user) {
+        next(err);
+      }
+      Opinion.find({ guarderia_username: user.username }, 'opinion comment user_name star_ranking created_at')
+        .sort({ created_at: -1 })
+        .exec((err, opinions) => {
+          res.render('guarderia/private-profile', { guarderia: user, opinions, moment, err });
+        });
+    });
+});
+
+router.get('/profile/:username', authMiddlewareToPrivate('/guarderias/private-profile/'), (req, res, next) => {
   Guarderia
     .findOne({ username: req.params.username })
     .exec((err, user) => {
@@ -124,24 +131,13 @@ router.post('/profile/:username', (req, res, next) => {
         })
         .catch((err) => { next(err); });
     });
-  });
-
-router.post('/upload', upload.single('photo'), (req, res, next) => {
-  const guarderiaId = req.user.id;
-  Guarderia.findByIdAndUpdate(guarderiaId, {
-    profilepic_path: `/uploads/${req.file.filename}`,
-    profilepic_name: req.file.originalname,
-  }, (err, user) => {
-    if (err) { return next(err); }
-    return res.redirect('/guarderias/edit');
-  });
 });
 
-router.post('/uploadpictures', upload.single('photo'), (req, res, next) =>{
+router.post('/uploadpictures', upload.single('photo'), (req, res, next) => {
   const guarderiaId = req.user.id;
   Guarderia.findById(guarderiaId, (err, guarderia) => {
     const path = `/uploads/${req.file.filename}`;
-    guarderia.otherpics.push(path);  
+    guarderia.otherpics.push(path);
     guarderia.save((err) => {
       if (err) {
         console.error(err)
@@ -155,7 +151,7 @@ router.post('/uploadpictures', upload.single('photo'), (req, res, next) =>{
 router.get('/deletepicture/:index', (req, res, next) => {
   guarderiaId = req.user.id;
   Guarderia.findById(guarderiaId, (err, guarderia) => {
-    guarderia.otherpics.splice(req.params, 1);  
+    guarderia.otherpics.splice(req.params, 1);
     guarderia.save((err) => {
       if (err) {
         console.error(err)
@@ -165,5 +161,6 @@ router.get('/deletepicture/:index', (req, res, next) => {
     });
   });
 })
+
 
 module.exports = router;

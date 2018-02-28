@@ -4,6 +4,9 @@ const User = require('../models/user');
 const Guarderia = require('../models/guarderia');
 const multer = require('multer');
 const upload = multer({ dest: './public/uploads/' });
+const authMiddlewareToPublic = require('../middlewares/auth-toPublic');
+const authMiddlewareToPrivate = require('../middlewares/auth-toPrivate');
+
 
 router.get('/edit', (req, res) => {
   res.render('user/edit', { user: req.user });
@@ -31,6 +34,28 @@ router.post('/upload', upload.single('photo'), (req, res, next) => {
     if (err) { return next(err); }
     return res.redirect('/users/edit');
   });
+});
+
+router.get('/profile/:username', authMiddlewareToPrivate('/users/private-profile/'), (req, res, next) => {
+  User
+    .findOne({ username: req.params.username })
+    .exec((err, user) => {
+      if (!user) {
+        next(err);
+      }
+      res.render('user/profile', { user });
+    });
+});
+
+router.get('/private-profile/:username', authMiddlewareToPublic('/users/profile/'), (req, res, next) => {
+  User
+    .findOne({ username: req.params.username })
+    .exec((err, user) => {
+      if (!user) {
+        next(err);
+      }
+      res.render('user/private-profile', { user });
+    });
 });
 
 module.exports = router;
