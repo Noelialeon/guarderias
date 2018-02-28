@@ -55,22 +55,38 @@
       <input class="fsr-only" id="guarderia-telephone" type="text" name="telephone" value='<%= user.telephone %>'>
     </div>
     <div class="col-auto">
-      <input type="checkbox" name="garden" value="garden">Garden
+      <input type="checkbox" id="guarderia-garden" name="garden" '<% if(user.services.garden) { %>' checked '<%} %>'>Garden
       <br>
     </div>
     <div class="col-auto">
-      <input type="checkbox" name="swimming_pool" value="swimming_pool">Swimming Pool
-      <br>
+      <input type="checkbox" id="guaderia-swimming_pool" name="swimming_pool" '<% if(user.services.swimming_pool) { %>' checked '<%} %>'>Swimming Pool
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" id="guaderia-kitchen" name="kitchen" '<% if(user.services.kitchen) { %>' checked '<%} %>'>Kitchen
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" id="guaderia-extra_hours" name="extra_hours" '<% if(user.services.extra_hours) { %>' checked '<%} %>'>Extra Hours
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" id="guaderia-spanish" name="spanish" '<% if(user.services.spanish) { %>' checked '<%} %>'>Spanish
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" id="guaderia-english" name="english" '<% if(user.services.english) { %>' checked '<%} %>'>English
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" id="guaderia-german" name="german" '<% if(user.services.german) { %>' checked '<%} %>'>German
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" id="guaderia-parking_carrito" name="parking_carrito" '<% if(user.services.parking_carrito) { %>' checked '<%} %>'>Parking para carritos
+    </div>
+    <div class="col-auto">
+      <input type="checkbox" id="guaderia-locker" name="locker" '<% if(user.services.locker) { %>' checked '<%} %>'>Taquilla individual
     </div>
     <div class="col-auto">
       <label for="email">E-mail</label>
       <input class="fsr-only" id="guarderia-email" type="text" name="email" value='<%= user.email %>'>
     </div>
 
-    <!-- <div class="col-auto">
-      <label for="children">Children</label>
-      <input class="fsr-only" id="user-lastname" type="number" name="children" placeholder= <%= user.children %>>
-    </div> -->
     <div class="col-auto">
       <button type="submit" class="btn btn-primary">Save changes</button>
     </div>

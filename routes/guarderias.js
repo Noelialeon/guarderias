@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 
 const express = require('express');
 const router = express.Router();
@@ -18,6 +18,25 @@ router.get('/edit', (req, res) => {
 
 router.post('/edit', (req, res, next) => {
   const guarderiaId = req.user.id;
+  let gardenIs;
+  let swimmingPoolIs;
+  let squaremetersIs;
+  let kitchenIs;
+  let extraHoursIs;
+  let spanishIs;
+  let englishIs;
+  let germanIs;
+  let parkingCarritoIs;
+  let lockerIs;
+  if (req.body.swimming_pool === 'on') { swimmingPoolIs = 'true'; } else { swimmingPoolIs = 'false'; }
+  if (req.body.garden === 'on') { gardenIs = 'true'; } else { gardenIs = 'false'; }
+  if (req.body.kitchen === 'on') { kitchenIs = 'true'; } else { kitchenIs = 'false'; }
+  if (req.body.extra_hours === 'on') { extraHoursIs = 'true'; } else { extraHoursIs = 'false'; }
+  if (req.body.spanish === 'on') { spanishIs = 'true'; } else { spanishIs = 'false'; }
+  if (req.body.english === 'on') { englishIs = 'true'; } else { englishIs = 'false'; }
+  if (req.body.german === 'on') { germanIs = 'true'; } else { germanIs = 'false'; }
+  if (req.body.parking_carrito === 'on') { parkingCarritoIs = 'true'; } else { parkingCarritoIs = 'false'; }
+  if (req.body.locker === 'on') { lockerIs = 'true'; } else { lockerIs = 'false'; }
   const updates = {
     name: req.body.name,
     description: req.body.description,
@@ -28,9 +47,16 @@ router.post('/edit', (req, res, next) => {
       city: req.body.city,
       coordinates: [req.body.longitude, req.body.latitude],
     },
-    facilities: {
-      garden: req.body.garden,
-      swimming_pool: req.body.swimming_pool,
+    services: {
+      garden: gardenIs,
+      swimming_pool: swimmingPoolIs,
+      kitchen: kitchenIs,
+      extra_hours: extraHoursIs,
+      spanish: spanishIs,
+      english: englishIs,
+      german: germanIs,
+      parking_carrito: parkingCarritoIs,
+      locker: lockerIs,
     },
     telephone: req.body.telephone,
     email: req.body.email,
@@ -42,7 +68,7 @@ router.post('/edit', (req, res, next) => {
 });
 
 router.get('/private-profile/:username', (req, res, next) => {
-  console.log("at private profile", req);
+
   if (req.params.username === req.user.username) {
     Guarderia
       .findOne({ username: req.params.username })

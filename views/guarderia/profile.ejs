@@ -10,13 +10,36 @@
           <%=guarderia.address.city%>
   </div>
   <h3 id="facilities">Facilities:</h1>
-    <p>Jardín
-      <%=guarderia.facilities.garden%>
-    </p>
-    <p>Piscina
-      <%=guarderia.facilities.swimming_pool%>
-    </p>
+      <% if (guarderia.services.swimming_pool) {%>
+        <img alt="Brand" src="<%=guarderia.services.swimming_pool_path%>">
+      <%}%>
+      <% if (guarderia.services.garden) {%>
+        <img alt="Brand" src="<%=guarderia.services.garden_path%>">
+      <%}%>
+      <% if (guarderia.services.kitchen) {%>
+        <img alt="Brand" src="<%=guarderia.services.kitchen_path%>">
+      <%}%>
+      <% if (guarderia.services.extra_hours) {%>
+        <img alt="Brand" src="<%=guarderia.services.extra_hours_path%>">
+      <%}%>
+      <% if (guarderia.services.spanish) {%>
+        <img alt="Brand" src="<%=guarderia.services.spanish_path%>">
+      <%}%>
+      <% if (guarderia.services.english) {%>
+        <img alt="Brand" src="<%=guarderia.services.english_path%>">
+      <%}%>
+      <% if (guarderia.services.german) {%>
+        <img alt="Brand" src="<%=guarderia.services.german_path%>">
+      <%}%>
+      <% if (guarderia.services.parking_carrito) {%>
+        <img alt="Brand" src="<%=guarderia.services.parking_carrito_path%>">
+      <%}%>
+      <% if (guarderia.services.locker) {%>
+        <img alt="Brand" src="<%=guarderia.services.locker_path%>">
+      <%}%>
 </div>
+
+<h3 id='facilities'>Facilities iconos:</h3>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
