@@ -1,22 +1,30 @@
-<div class="card-body">
-  <img src="<%=user.profilepic_path%>">
-  <div>
-    <h1>Hola,
-      <%=user.username%>
-    </h1>
+<div class="wrapper">
+  <div class="page-header page-header-profile page-header-xs" data-parallax="true">
+    <div class="filter"></div>
   </div>
-  <p id="children">Tienes
-    <%=user.children%> hijo/s.
-  </p>
-  <div>
-    <a href="/users/edit">Editar perfil</a>
-  </div>
-</div>
-<br>
-<% if ( typeof(error) != "undefined") { %>
-  <div class="alert alert-danger" role="alert">
-    <%= error %>
-  </div>
-  <% } %>
-    <br>
-    </div>
+  <div class="section profile-content">
+    <div class="container">
+      <div class="owner">
+        <div class="avatar">
+          <img src="<%=user.profilepic_path%>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+        </div>
+        <div class="name">
+          <h4 class="title">Hola,
+            <%=user.username%>
+              <br />
+          </h4>
+          <h6 class="description">
+            <%=user.children%> hijo/s.</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto text-center">
+          <p>Descripción</p>
+          <br />
+          <a href="/users/edit" class="btn btn-outline-default btn-round">Editar perfil</a>
+        </div>
+      </div>
+      <br/>
+      <div class="nav-tabs-wrapper">
+            <a class="nav-link active" data-toggle="tab" href="#follows" role="tab">Follows</a>
+      </div>

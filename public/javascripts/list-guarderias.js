@@ -51,7 +51,6 @@ $(document).ready(() => {
 
   $('#charge-list').on("click", () => {
     event.preventDefault();
-    $("#filter").addClass("show-list");
     $("#map").hide();
     $("#guarderias-list").show();
     if (totalList == 0) {
@@ -61,13 +60,14 @@ $(document).ready(() => {
 
   $('#charge-map').on("click", () => {
     event.preventDefault();
-    $("#filter").removeClass("show-list");    
     $("#map").show();
     $("#guarderias-list").hide();
   });
 
   $('#filter').submit(() => {
-    event.preventDefault();
-    chargeGuarderiasList();
+    if ($('#guarderias-list').children().length > 0) {
+      event.preventDefault();
+      chargeGuarderiasList();
+    };
   });
 });
