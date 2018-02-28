@@ -10,7 +10,7 @@ const userSchema = new Schema({
   firstname: String,
   lastname: String,
   children: Number,
-  profilepic_path: { type: String, default: '/uploads/ce0f57b0a10e5e21c0863de5be5000dc' },
+  profilepic_path: { type: String, default: '/images/profile-pic-user' },
   profilepic_name: { type: String, default: 'default_user_pic' },
   opinion_count: Number,
   favourites: [{ type: Schema.Types.ObjectId, ref: 'Guarderia' }],

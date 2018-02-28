@@ -14,10 +14,40 @@
   </div>
   <hr>
 
+  <div class="row justify-content-center">
+    <h4>Actualiza tu foto de perfil</h4>
+  </div>
+  <br>
+  <form action="/guarderias/upload" method="post" enctype="multipart/form-data">
+    <div class="row justify-content-center">
+      <div class="col-md-4 ">
+        <div class="input-group">
+          <div class="custom-file">
+            <input type="text" name="name">
+            <input type="file" name="photo" class="custom-file-input" id="inputGroupFile04">
+            <label class="custom-file-label" for="inputGroupFile04">Elegir archivo</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex align-items-end">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-outline-primary btn-block ">Guardar foto de perfil</button>
+        </div>
+      </div>
+      <% if (typeof message !== "undefined") { %>
+        <div class="error-message">
+          <%= message %>
+        </div>
+        <% } %>
+    </div>
+  </form>
   <div class="container">
     <form action="/guarderias/edit" method="POST" id="form-container">
 
-      <h4>Información</h4>
+      <div class="row justify-content-center">
+        <h4>Información</h4>
+      </div>
+      <br>
       <div class="row justify-content-center">
         <div class="row"></div>
         <div class="col-sm-4">
@@ -37,7 +67,13 @@
         </div>
       </div>
 
-      <h4>Dirección</h4>
+
+
+
+      <div class="row justify-content-center">
+        <h4>Dirección</h4>
+      </div>
+      <br>
       <div class="row justify-content-center">
         <div class="col-md-4">
           <label for="street">Calle</label>
@@ -69,19 +105,53 @@
         </div>
       </div>
 
-
-      <h4>Facilidades</h4>
       <div class="row justify-content-center">
-        <div class="col-md-4">
-          <input type="checkbox" name="garden" value="garden">Jardín
+        <h4>Idiomas</h4>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+          <input type="checkbox" id="guaderia-spanish" name="spanish" '<% if(user.services.spanish) { %>' checked '<%} %>'> Español
         </div>
-        <div class="col-md-4">
-          <input type="checkbox" name="swimming_pool" value="swimming_pool">Piscina
+        <div class="col-md-2">
+          <input type="checkbox" id="guaderia-english" name="english" '<% if(user.services.english) { %>' checked '<%} %>'> Inglés
+        </div>
+        <div class="col-md-2">
+          <input type="checkbox" id="guaderia-german" name="german" '<% if(user.services.german) { %>' checked '<%} %>'> Alemán
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <h4>Facilidades</h4>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+          <input type="checkbox" id="guarderia-garden" name="garden" '<% if(user.services.garden) { %>' checked '<%} %>'> Jardín
+        </div>
+        <div class="col-md-2">
+          <input type="checkbox" id="guaderia-swimming_pool" name="swimming_pool" '<% if(user.services.swimming_pool) { %>' checked
+            '<%} %>'> Piscina
+        </div>
+        <div class="col-md-2">
+          <input type="checkbox" id="guaderia-kitchen" name="kitchen" '<% if(user.services.kitchen) { %>' checked '<%} %>'> Cocina
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-2">
+          <input type="checkbox" id="guaderia-extra_hours" name="extra_hours" '<% if(user.services.extra_hours) { %>' checked
+            '<%} %>'> Horas extra
+        </div>
+        <div class="col-lg-2">
+          <input type="checkbox" id="guaderia-parking_carrito" name="parking_carrito" '<% if(user.services.parking_carrito) { %>' checked
+            '<%} %>'> Parking
+        </div>
+        <div class="col-md-2">
+          <input type="checkbox" id="guaderia-locker" name="locker" '<% if(user.services.locker) { %>' checked '<%} %>'> Taquilla individual
         </div>
       </div>
       </br>
       </br>
-
       <div class="row justify-content-center">
         <div class="col-md-3">
           <button type="submit" class="btn btn-primary btn-block btn-lg">Guardar cambios</button>
@@ -94,29 +164,10 @@
       </div>
     </form>
 
-
-    <h5>Actualiza tu foto de perfil</h5>
-    <form action="/guarderias/upload" method="post" enctype="multipart/form-data">
-      <div class="row justify-content-center">
-        <div class="col-md-4 ">
-          <div class="input-group">
-            <div class="custom-file">
-              <input type="text" name="name">
-              <input type="file" name="photo" class="custom-file-input" id="inputGroupFile04">
-              <label class="custom-file-label" for="inputGroupFile04">Elegir archivo</label>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 d-flex align-items-end">
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-outline-primary btn-block ">Guardar foto de perfil</button>
-          </div>
-        </div>
-      </div>
-    </form>
-
-
-    <h4>Carga más imagenes</h4>
+    <div class="row justify-content-center">
+      <h4>Carga más imagenes</h4>
+    </div>
+    <br>
     <form action="/guarderias/uploadpictures" method="post" enctype="multipart/form-data">
       <div class="row justify-content-center">
         <div class="col-md-4">
@@ -135,7 +186,10 @@
         </div>
       </div>
     </form>
-
+    <div class="row justify-content-center">
+      <h4>Galería</h4>
+    </div>
+    <br>
     <div class="row">
       <div class=" w-50 p-3 d-flex align-items-end">
         <%user.otherpics.forEach(function(path, index, array){ %>

@@ -14,11 +14,9 @@
               <label for="password">Password</label>
               <input class="form-control" id="user-password" type="password" name="password" placeholder="Your password">
             </div>
-            <div class="row">
-              <% if (typeof message !== "undefined") { %>
-                <%= message %>
-                  <% } %>
-            </div>
+            <% if (typeof message !== "undefined") { %>
+              <%= message %>
+              <% } %>
             <button type="submit" class="btn btn-register btn-primary btn-block">Log in</button>
 
           </form>
@@ -39,13 +37,9 @@
               <label for="password">Password</label>
               <input class="form-control" id="guarderia-password" type="password" name="password" placeholder="Your password">
             </div>
-            <div class="row">
-              <div class="col-md-6">
-              </div>
-              <% if (typeof message !== "undefined") { %>
-                <%= message %>
-                  <% } %>
-            </div>
+            <% if (typeof message !== "undefined") { %>
+              <%= message %>
+              <% } %>
             <button type="submit" class="btn btn-register btn-primary btn-block">Log in</button>
 
           </form>

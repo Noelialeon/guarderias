@@ -22,14 +22,15 @@ $(document).ready(() => {
           <div class="card-body">
             <h5 class="card-title">${guarderia.name}</h5>
             <p class="card-text">${guarderia.description}</p>
-            <p class="card-text">Jardín ${guarderia.facilities.garden}</p>
-            <p class="card-text">Piscina ${guarderia.facilities.swimming_pool}</p>
+            <p class="card-text">Jardín ${guarderia.services.garden}</p>
+            <p class="card-text">Piscina ${guarderia.services.swimming_pool}</p>
             <a href="/guarderias/profile/${guarderia.username}" class="card-link">Ver guadería</a>
           </div>
         </div>
       </div>
           <br>`;
       $("#home-gallery").append(guarderiaCard);
+
       totalList.push(guarderia);
     });
   };

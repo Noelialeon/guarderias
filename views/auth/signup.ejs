@@ -1,55 +1,49 @@
 <div class="container">
 
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card-register mx-auto">
-          <div class="card-body">
-            <h3 class="card-title">Crea una cuenta como usuario</h3>
-            <form action="/user/signup" method="POST" id="form-container">
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input class="form-control" id="user-username" type="text" name="username" placeholder="Super mami">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input class="form-control" id="user-password" type="password" name="password" placeholder="Your password">
-              </div>
-              <div class="row">
-                <% if (typeof message !== "undefined") { %>
-                  <%= message %>
-                    <% } %>
-              </div>
-                <button type="submit" class="btn btn-register btn-primary btn-block">Crear cuenta</button>  
-            </form>
-          </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card-register mx-auto">
+        <div class="card-body">
+          <h3 class="card-title">Crea una cuenta como usuario</h3>
+          <form action="/user/signup" method="POST" id="form-container">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input class="form-control" id="user-username" type="text" name="username" placeholder="Super mami">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input class="form-control" id="user-password" type="password" name="password" placeholder="Your password">
+            </div>
+            <% if (typeof message !== "undefined") { %>
+              <%= message %>
+                <% } %>
+                  <button type="submit" class="btn btn-register btn-primary btn-block">Crear cuenta</button>
+          </form>
         </div>
       </div>
+    </div>
 
-      <div class="col-sm-6">
-        <div class="card-register mx-auto">
-          <div class="card-body">
-            <h3 class="card-title">Crea una cuenta de guarderia</h3>
-            <form action="/guarderia/signup" method="POST" id="form-container-guarderia">
-  
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input class="form-control" id="guarderia-username" type="text" name="username" placeholder="Super mami">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input class="form-control" id="guarderia-password" type="password" name="password" placeholder="Your password">
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                </div>
-                <% if (typeof message !== "undefined") { %>
-                  <%= message %>
-                    <% } %>
-              </div>
-                <button type="submit" class="btn btn-register btn-primary btn-block">Crear cuenta</button>
-            </form>
-          </div>
+    <div class="col-sm-6">
+      <div class="card-register mx-auto">
+        <div class="card-body">
+          <h3 class="card-title">Crea una cuenta de guarderia</h3>
+          <form action="/guarderia/signup" method="POST" id="form-container-guarderia">
+
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input class="form-control" id="guarderia-username" type="text" name="username" placeholder="Super mami">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input class="form-control" id="guarderia-password" type="password" name="password" placeholder="Your password">
+            </div>
+            <% if (typeof message !== "undefined") { %>
+              <%= message %>
+                <% } %>
+                  <button type="submit" class="btn btn-register btn-primary btn-block">Crear cuenta</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
+</div>
