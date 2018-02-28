@@ -1,61 +1,70 @@
-<!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-<div class="card-body">
-  <h1>Welcome to your profile
-    <%=guarderia.name%>
-  </h1>
-  <div id="address">Address:
-    <%=guarderia.address.street%>
-      <%=guarderia.address.number%>
-        <%=guarderia.address.postcode%>
-          <%=guarderia.address.city%>
-  </div>
-  <h3 id="facilities">Facilities:</h1>
-    <p>Jardín
-      <%=guarderia.facilities.garden%>
-    </p>
-    <p>Piscina
-      <%=guarderia.facilities.swimming_pool%>
-    </p>
-    <a href="/guarderias/edit">Edit profile</a>
-</div>
-<div class="container-fluid">
-  <div id="map-profile" class="map-profile"></div>
-  <h2> Comentarios acerca de
-    <%=guarderia.username%>
-  </h2>
-  <div id="container">
-    <% if (opinions.length > 0) { %>
-      <% opinions.forEach(function(opinion) { %>
-        <div>
-          <strong>
-            <%= opinion.user_name %> dice:
-          </strong>
-          <br>
-          <p>
-            <%= opinion.comment %>
-          </p>
-          <p>Puntuación:
-            <%= opinion.star_ranking %> estrellas.
-          </p>
-          <p class="date">Comentado el
-            <%= moment(opinion.created_at).format("LL, LTS") %>
-          </p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card-body">
+        <h1>
+          Hola,
+          <%=guarderia.name%>
+        </h1>
+        <div id="address" class="h5">Dirección:
+          <%=guarderia.address.street%>
+            <%=guarderia.address.number%>
+              <%=guarderia.address.postcode%>
+                <%=guarderia.address.city%>
         </div>
-        <% }) %>
-          <% } else { %>
-            <div>
-              <p>@
-                <%= guarderia.username %> no tiene comentarios aún.</p>
-            </div>
-            <% } %>
-  </div>
-  <br>
-  <% if ( typeof(error) != "undefined") { %>
-    <div class="alert alert-danger" role="alert">
-      <%= error %>
+
+        <h4 id="facilities">Facilidades</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <p>Jardín
+              <%=guarderia.facilities.garden%>
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p>Piscina
+              <%=guarderia.facilities.swimming_pool%>
+            </p>
+          </div>
+        </div>
+        <a href="/guarderias/edit">Edit profile</a>
+        <hr>
+        <h5> Los siguientes usuarios han comentado tu perfil:
+        </h5>
+        <div id="container">
+          <% if (opinions.length > 0) { %>
+            <% opinions.forEach(function(opinion) { %>
+              <div>
+                <a href="/users/profile/<%= opinion.user_name %>">
+                  <%= opinion.user_name %> dice:
+                </a>
+                <br>
+                <h5>
+                  <%= opinion.comment %>
+                </h5>
+                <p>Puntuación:
+                  <%= opinion.star_ranking %> estrellas.
+                </p>
+                <p class="date">Comentado el
+                  <%= moment(opinion.created_at).format("LL, LTS") %>
+                </p>
+              </div>
+              <% }) %>
+                <% } else { %>
+                  <div>
+                    <p>@
+                      <%= guarderia.username %> aún no tienes comentarios.</p>
+                  </div>
+                  <% } %>
+        </div>
+      </div>
     </div>
-    <% } %>
-      <br>
+    <div class="col-md-2">
+      </br>
+      </br>
+      </br>
+      <div id="map-profile" class="map-profile"></div>
+    </div>
+  </div>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>

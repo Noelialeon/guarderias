@@ -58,12 +58,13 @@ router.get('/private-profile/:username', authMiddlewareToPublic('/guarderias/pro
   Guarderia
     .findOne({ username: req.params.username })
     .exec((err, user) => {
+      console.log(user);
       if (!user) {
         next(err);
       }
-      Opinion.find({ guarderia_username: user.username }, 'opinion comment user_name star_ranking created_at')
-        .sort({ created_at: -1 })
-        .exec((err, opinions) => {
+      Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name star_ranking created_at')
+      .sort({ created_at: -1 })
+      .exec((err, opinions) => {
           res.render('guarderia/private-profile', { guarderia: user, opinions, moment, err });
         });
     });
