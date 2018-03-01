@@ -106,7 +106,7 @@ router.get('/profile/:username', authMiddlewareToPrivate('/guarderias/private-pr
       Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name star_ranking created_at')
         .sort({ created_at: -1 })
         .exec((err, opinions) => {
-          res.render('guarderia/profile', { guarderia: user, opinions, moment, err });
+          res.render('guarderia/profile', { guarderia: user, opinions, moment, err, });
         });
     });
 });
@@ -119,10 +119,11 @@ router.post('/profile/:username', (req, res, next) => {
         next(err);
       }
       const currentUser = req.user;
+      const userName = `${currentUser.firstname} ${currentUser.lastname}`;
       const newOpinion = {
         comment: req.body.commentBody,
         user_id: currentUser._id,
-        user_name: currentUser.username,
+        user_name: userName,
         guarderia_id: currentGuarderia._id,
         star_ranking: req.body.starsRanking,
       };
