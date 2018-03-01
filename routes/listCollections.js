@@ -24,7 +24,7 @@ module.exports = router;
 router.get('/search', (req, res) => {
   const { garden } = req.query;
   const { swimmingPool } = req.query;
-  Guarderias.where('facilities.garden', garden).where('facilities.swimming_pool', swimmingPool)
+  Guarderias.where('services.garden', garden).where('services.swimming_pool', swimmingPool)
     .find((error, guarderias) => {
       if (error) {
         res.status(500).json({ message: error });

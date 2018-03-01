@@ -6017,3 +6017,9 @@ textarea.form-control {
   height: 500px;
   width: 300px;
 }
+
+.halfsize {
+  -moz-transform:scale(0.50);
+  -webkit-transform:scale(0.50);
+  transform:scale(0.50);
+}
