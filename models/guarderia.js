@@ -15,8 +15,6 @@ const guarderiaSchema = new Schema({
     swimming_pool_path: { type: String, default: '/images/swimming-pool-icon' },
     garden: Boolean,
     garden_path: { type: String, default: '/images/garden-icon' },
-    square_meters: Number,
-    square_meters_path: { type: String, default: '/images/meters-icon' },
     kitchen: Boolean,
     kitchen_path: { type: String, default: '/images/kitchen-icon' },
     extra_hours: Boolean,
