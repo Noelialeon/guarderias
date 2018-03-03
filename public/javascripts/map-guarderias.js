@@ -12,13 +12,62 @@ $(document).ready(() => {
 
   //Añadir aquí la info que se muestra en la infowindow aquí:
   const contentString = (pin) => {
-    return (
-      `<div class="card-body">
-      <img class="card-img-top" src="${pin.guarderia.profilepic_path}" alt="Card image cap">
-      <h5 class="card-title">${pin.guarderia.name}</h5>
-      <p class="card-text">${pin.guarderia.description}</p>
-      <p class="card-text">${pin.guarderia.address.city}</p>
-      <a href="/guarderias/profile/${pin.guarderia.username}" class="card-link">Ver guadería</a></div></div>`);
+    
+    guarderiaCard = `<div class="card-body">`
+
+    if (pin.guarderia.otherpics.length !== 0) {
+      guarderiaCard +=
+          `<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">`;
+    pin.guarderia.otherpics.forEach(function(path, index, array){
+        if (index === 0) {
+      guarderiaCard +=
+              `<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`;                 
+        } else {
+      guarderiaCard += 
+              `<li data-target="#carouselExampleIndicators" data-slide-to="<${index}>"></li>`;
+        }
+    });
+      guarderiaCard +=
+            ` </ol>
+              <div class="carousel-inner">`;
+    pin.guarderia.otherpics.forEach(function(path, index, array) {
+      if (index === 0) {
+        guarderiaCard +=
+            `<div class="carousel-item active">
+              <img class="d-block w-100" src=${path}>
+                </div>`;
+      } else {
+        guarderiaCard +=
+                `<div class="carousel-item">
+                  <img class="d-block w-100" src=${path}>
+                    </div>`;
+      }
+    });
+      guarderiaCard +=
+      `</div>
+
+       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+       </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>`;
+  }
+
+    guarderiaCard +=
+
+    `<h5 class="card-title">${pin.guarderia.name}</h5>
+    <p class="card-text">${pin.guarderia.description}</p>
+    <p class="card-text">${pin.guarderia.address.city}</p>
+    <a href="/guarderias/profile/${pin.guarderia.username}" class="card-link">Ver guadería</a></div></div>`
+
+    
+    
+    return (guarderiaCard);
   };
 
   function startMap() {
