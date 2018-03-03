@@ -109,8 +109,8 @@ $(document).ready(() => {
 
   $('#charge-list').on("click", () => {
     event.preventDefault();
-    $("#map").hide();
-    $("#guarderias-list").show();
+    $("#map").toggle();
+    $("#guarderias-list").toggle();
     if (totalList == 0) {
       chargeGuarderiasList();
     }
@@ -118,14 +118,12 @@ $(document).ready(() => {
 
   $('#charge-map').on("click", () => {
     event.preventDefault();
-    $("#map").show();
-    $("#guarderias-list").hide();
+    $("#map").toggle();
+    $("#guarderias-list").toggle();
   });
 
   $('#filter').submit(() => {
-    if ($('#guarderias-list').children().length > 0) {
       event.preventDefault();
       chargeGuarderiasList();
-    };
   });
 });

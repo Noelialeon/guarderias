@@ -89,8 +89,8 @@ router.get('/private-profile/:username', authMiddlewareToPublic('/guarderias/pro
         next(err);
       }
       Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name star_ranking created_at')
-      .sort({ created_at: -1 })
-      .exec((err, opinions) => {
+        .sort({ created_at: -1 })
+        .exec((err, opinions) => {
           res.render('guarderia/private-profile', { guarderia: user, opinions, moment, err });
         });
     });
@@ -103,7 +103,7 @@ router.get('/profile/:username', authMiddlewareToPrivate('/guarderias/private-pr
       if (!user) {
         next(err);
       }
-      Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name star_ranking created_at')
+      Opinion.find({ guarderia_id: user._id }, 'opinion comment user_name user_realName star_ranking created_at')
         .sort({ created_at: -1 })
         .exec((err, opinions) => {
           res.render('guarderia/profile', { guarderia: user, opinions, moment, err, });
@@ -119,11 +119,13 @@ router.post('/profile/:username', (req, res, next) => {
         next(err);
       }
       const currentUser = req.user;
-      const userName = `${currentUser.firstname} ${currentUser.lastname}`;
+      const userName = currentUser.username;
+      const userRealName = `${currentUser.firstname} ${currentUser.lastname}`;
       const newOpinion = {
         comment: req.body.commentBody,
         user_id: currentUser._id,
         user_name: userName,
+        user_realName: userRealName,
         guarderia_id: currentGuarderia._id,
         star_ranking: req.body.starsRanking,
       };

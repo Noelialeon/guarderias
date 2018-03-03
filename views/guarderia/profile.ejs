@@ -31,22 +31,33 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
- <% } %>
+  <% } %>
 
     <div class="container">
       <div class="row">
         <div class="col-md-8">
           <div class="card-body">
-            <h1>
-              <%=guarderia.name%>
-            </h1>
-            <div id="address" class="h5">Dirección:
-              <%=guarderia.address.street%>
-                <%=guarderia.address.number%>
-                  <%=guarderia.address.postcode%>
-                    <%=guarderia.address.city%>
-            </div>
 
+            <div class="row">
+
+              <div class="col-md-2">
+                <br>
+                <br>
+
+                <img src="<%=guarderia.profilepic_path%>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+              </div>
+              <div class="col-md-8">
+                <h1>
+                  <%=guarderia.name%>
+                </h1>
+                <div id="address" class="h5">Dirección:
+                  <%=guarderia.address.street%>
+                    <%=guarderia.address.number%>
+                      <%=guarderia.address.postcode%>
+                        <%=guarderia.address.city%>
+                </div>
+              </div>
+            </div>
             <h4 id="idiomas">Idiomas</h4>
             <br>
             <div class="row justify-content-left">
@@ -82,12 +93,14 @@
                     <%}%>
                       <% if (guarderia.services.extra_hours) {%>
                         <div class="col-md-2">
-                          <img alt="Actividades extracurriculares" src="<%=guarderia.services.extra_hours_path%>" data-toggle="tooltip" data-placement="bottom" title="Horas extra">
+                          <img alt="Actividades extracurriculares" src="<%=guarderia.services.extra_hours_path%>" data-toggle="tooltip" data-placement="bottom"
+                            title="Horas extra">
                         </div>
                         <%}%>
                           <% if (guarderia.services.parking_carrito) {%>
                             <div class="col-md-2">
-                              <img alt="Parking para carritos" src="<%=guarderia.services.parking_carrito_path%>" data-toggle="tooltip" data-placement="bottom" title="Parking para carritos">
+                              <img alt="Parking para carritos" src="<%=guarderia.services.parking_carrito_path%>" data-toggle="tooltip" data-placement="bottom"
+                                title="Parking para carritos">
                             </div>
                             <%}%>
                               <% if (guarderia.services.locker) {%>
@@ -111,7 +124,7 @@
               <% opinions.forEach(function(opinion) { %>
                 <div>
                   <a href="/users/profile/<%= opinion.user_name %>">
-                    <%= opinion.user_name %> dice:
+                    <%= opinion.user_realName %> dice:
                   </a>
                   <br>
                   <h5>
@@ -150,11 +163,12 @@
                           <br>
           </div>
         </div>
-      <div class="col-md-2">
-        </br>
-        </br>
-        </br>
-        <div id="map-profile" class="map-profile"></div>
+        <div class="col-md-2">
+          </br>
+          </br>
+          </br>
+          <div id="map-profile" class="map-profile"></div>
+        </div>
       </div>
     </div>
 

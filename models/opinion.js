@@ -15,6 +15,7 @@ const opinionSchema = new Schema({
     ref: 'User',
   },
   user_name: String,
+  user_realName: String,
   guarderia_id: {
     type: Schema.Types.ObjectId,
     ref: 'Guarderia',

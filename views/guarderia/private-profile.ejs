@@ -37,110 +37,113 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <div class="row">
+          <div class="card-body">
 
-            <div class="card-body col-md-9">
-              <h1>
-                Hola,
-                <%=guarderia.name%>
-              </h1>
-              <div id="address" class="h5">Dirección:
-                <%=guarderia.address.street%>
-                  <%=guarderia.address.number%>
-                    <%=guarderia.address.postcode%>
-                      <%=guarderia.address.city%>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <br>
-              <br>
-              <br>
-              <br>
-              <a href="/guarderias/edit" class="btn btn-outline-primary btn-sm btn-round">Editar perfil</a>
-            </div>
-          </div>
-          <h4 id="idiomas">Idiomas</h4>
-          <br>
-          <div class="row justify-content-left">
-            <% if (guarderia.services.spanish) {%>
+            <div class="row">
+
               <div class="col-md-2">
-                <img alt="Español" src="<%=guarderia.services.spanish_path%>">
+                <br>
+                <br>
+
+                <img src="<%=guarderia.profilepic_path%>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                <br>
+                <a href="/guarderias/edit" class="btn btn-outline-primary btn-sm btn-round">Editar perfil</a>
               </div>
-              <%}%>
-                <% if (guarderia.services.english) {%>
-                  <div class="col-md-2">
-                    <img alt="Inglés" src="<%=guarderia.services.english_path%>">
-                  </div>
-                  <%}%>
-                    <% if (guarderia.services.german) {%>
-                      <div class="col-md-2">
-                        <img alt="Alemán" src="<%=guarderia.services.german_path%>">
-                      </div>
-                      <%}%>
-          </div>
-          <h4 id="services">Servicios</h4>
-          <br>
-          <div class="row justify-content-left">
-            <% if (guarderia.services.garden) {%>
-              <div class="col-md-2">
-                <img alt="Jardín" src="<%=guarderia.services.garden_path%>">
-              </div>
-              <%}%>
-                <% if (guarderia.services.kitchen) {%>
-                  <div class="col-md-2">
-                    <img alt="Cocina" src="<%=guarderia.services.kitchen_path%>">
-                  </div>
-                  <%}%>
-                    <% if (guarderia.services.extra_hours) {%>
-                      <div class="col-md-2">
-                        <img alt="Actividades extracurriculares" src="<%=guarderia.services.extra_hours_path%>">
-                      </div>
-                      <%}%>
-                        <% if (guarderia.services.parking_carrito) {%>
-                          <div class="col-md-2">
-                            <img alt="Parking para carritos" src="<%=guarderia.services.parking_carrito_path%>">
-                          </div>
-                          <%}%>
-                            <% if (guarderia.services.locker) {%>
-                              <div class="col-md-2">
-                                <img alt="Taquillas" src="<%=guarderia.services.locker_path%>">
-                              </div>
-                              <%}%>
-                                <% if (guarderia.services.swimming_pool) {%>
-                                  <div class="col-md-2">
-                                    <img alt="Piscina" src="<%=guarderia.services.swimming_pool_path%>">
-                                  </div>
-                                  <%}%>
-          </div>
-          <br>
-          <hr>
-          <h5> Los siguientes usuarios han comentado tu perfil:
-          </h5>
-          <div id="container">
-            <% if (opinions.length > 0) { %>
-              <% opinions.forEach(function(opinion) { %>
-                <div>
-                  <a href="/users/profile/<%= opinion.user_name %>">
-                    <%= opinion.user_name %> dice:
-                  </a>
-                  <br>
-                  <h5>
-                    <%= opinion.comment %>
-                  </h5>
-                  <p>Puntuación:
-                    <%= opinion.star_ranking %> estrellas.
-                  </p>
-                  <p class="date">Comentado el
-                    <%= moment(opinion.created_at).format("LL, LTS") %>
-                  </p>
+              <div class="col-md-8">
+                <h1>
+                  <%=guarderia.name%>
+                </h1>
+                <div id="address" class="h5">Dirección:
+                  <%=guarderia.address.street%>
+                    <%=guarderia.address.number%>
+                      <%=guarderia.address.postcode%>
+                        <%=guarderia.address.city%>
                 </div>
-                <% }) %>
-                  <% } else { %>
-                    <div>
-                      <p>@
-                        <%= guarderia.username %> aún no tienes comentarios.</p>
+              </div>
+            </div>
+            <h4 id="idiomas">Idiomas</h4>
+            <br>
+            <div class="row justify-content-left">
+              <% if (guarderia.services.spanish) {%>
+                <div class="col-md-2">
+                  <img alt="Español" src="<%=guarderia.services.spanish_path%>">
+                </div>
+                <%}%>
+                  <% if (guarderia.services.english) {%>
+                    <div class="col-md-2">
+                      <img alt="Inglés" src="<%=guarderia.services.english_path%>">
                     </div>
-                    <% } %>
+                    <%}%>
+                      <% if (guarderia.services.german) {%>
+                        <div class="col-md-2">
+                          <img alt="Alemán" src="<%=guarderia.services.german_path%>">
+                        </div>
+                        <%}%>
+            </div>
+            <h4 id="services">Servicios</h4>
+            <br>
+            <div class="row justify-content-left">
+              <% if (guarderia.services.garden) {%>
+                <div class="col-md-2">
+                  <img alt="Jardín" src="<%=guarderia.services.garden_path%>">
+                </div>
+                <%}%>
+                  <% if (guarderia.services.kitchen) {%>
+                    <div class="col-md-2">
+                      <img alt="Cocina" src="<%=guarderia.services.kitchen_path%>">
+                    </div>
+                    <%}%>
+                      <% if (guarderia.services.extra_hours) {%>
+                        <div class="col-md-2">
+                          <img alt="Actividades extracurriculares" src="<%=guarderia.services.extra_hours_path%>">
+                        </div>
+                        <%}%>
+                          <% if (guarderia.services.parking_carrito) {%>
+                            <div class="col-md-2">
+                              <img alt="Parking para carritos" src="<%=guarderia.services.parking_carrito_path%>">
+                            </div>
+                            <%}%>
+                              <% if (guarderia.services.locker) {%>
+                                <div class="col-md-2">
+                                  <img alt="Taquillas" src="<%=guarderia.services.locker_path%>">
+                                </div>
+                                <%}%>
+                                  <% if (guarderia.services.swimming_pool) {%>
+                                    <div class="col-md-2">
+                                      <img alt="Piscina" src="<%=guarderia.services.swimming_pool_path%>">
+                                    </div>
+                                    <%}%>
+            </div>
+            <br>
+            <hr>
+            <h5> Los siguientes usuarios han comentado tu perfil:
+            </h5>
+            <div id="container">
+              <% if (opinions.length > 0) { %>
+                <% opinions.forEach(function(opinion) { %>
+                  <div>
+                    <a href="/users/profile/<%= opinion.user_name %>">
+                      <%= opinion.user_name %> dice:
+                    </a>
+                    <br>
+                    <h5>
+                      <%= opinion.comment %>
+                    </h5>
+                    <p>Puntuación:
+                      <%= opinion.star_ranking %> estrellas.
+                    </p>
+                    <p class="date">Comentado el
+                      <%= moment(opinion.created_at).format("LL, LTS") %>
+                    </p>
+                  </div>
+                  <% }) %>
+                    <% } else { %>
+                      <div>
+                        <p>@
+                          <%= guarderia.username %> aún no tienes comentarios.</p>
+                      </div>
+                      <% } %>
+            </div>
           </div>
         </div>
         <div class="col-md-2">
