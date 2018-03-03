@@ -7,9 +7,9 @@ $(document).ready(() => {
     var swimmingPool = $("#swimming_pool-checkbox").is(':checked') ? true : false;
     var kitchen = $("#kitchen").is(':checked') ? true : false;
     var extraHours = $("#extra_hours-checkbox").is(':checked') ? true : false;
-    var parkingCarrito = $("#parking_carrito-checkbox").is(':checked') ? true : false;var garden = $("#garden-checkbox").is(':checked') ? true : false;
+    var parkingCarrito = $("#parking_carrito-checkbox").is(':checked') ? true : false;
     var locker = $("#locker-checkbox").is(':checked') ? true : false;
-    var spanish = $("#spanish-checkbox").is(':checked') ? true : false;var garden = $("#garden-checkbox").is(':checked') ? true : false;
+    var spanish = $("#spanish-checkbox").is(':checked') ? true : false;
     var english = $("#english-checkbox").is(':checked') ? true : false;
     var german = $("#german-checkbox").is(':checked') ? true : false;
     

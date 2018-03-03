@@ -18,8 +18,7 @@ router.get('/edit', (req, res) => {
 });
 
 router.post('/edit', (req, res, next) => {
-  const guarderiaId = req.user.id;
-  let gardenIs;
+  console.log("body", req.body);
   let swimmingPoolIs;
   let squaremetersIs;
   let kitchenIs;

@@ -105,17 +105,27 @@ $(document).ready(() => {
   }
 
   function chargeGuarderias() {
+    
     var garden = $("#garden-checkbox").is(':checked') ? true : false;
     var swimmingPool = $("#swimming_pool-checkbox").is(':checked') ? true : false;
+    var kitchen = $("#kitchen").is(':checked') ? true : false;
+    var extraHours = $("#extra_hours-checkbox").is(':checked') ? true : false;
+    var parkingCarrito = $("#parking_carrito-checkbox").is(':checked') ? true : false;
+    var locker = $("#locker-checkbox").is(':checked') ? true : false;
+    var spanish = $("#spanish-checkbox").is(':checked') ? true : false;
+    var english = $("#english-checkbox").is(':checked') ? true : false;
+    var german = $("#german-checkbox").is(':checked') ? true : false;
+
     if (!garden && !swimmingPool) {
       var url = "http://localhost:3000/chargeGuarderiasDB"
     } else {
-      var url = "http://localhost:3000/chargeGuarderiasDB/search?garden=" + garden + "&swimmingPool=" + swimmingPool;
+      var url = "http://localhost:3000/chargeGuarderiasDB/search?services.garden=" + garden + "&swimmingPool=" + swimmingPool + "&kitchen=" + kitchen + "&extraHours=" + extraHours + "&parkingCarrito=" + parkingCarrito + "&locker=" + locker + "&spanish=" + spanish + "&english=" + english + "&german=" + german
     }
     $.ajax({
       url: url,
       method: 'GET',
       success: function (guarderias) {
+        console.log(guarderias);
         deleteMarkers();
         placeGuarderias(guarderias);
       },
