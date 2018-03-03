@@ -5,9 +5,9 @@
       </br>
       <section>
         <div class="owner">
-        <div class="avatar">
-         <img src="<%= user.profilepic_path %>" alt="Circle Image" class="img-circle img-no-padding img-responsive" />
-        </div>
+          <div class="avatar">
+            <img src="<%= user.profilepic_path %>" alt="Circle Image" class="img-circle img-no-padding img-responsive" />
+          </div>
         </div>
       </section>
     </div>
@@ -17,7 +17,6 @@
     </div>
   </div>
   <hr>
-
   <div class="row justify-content-center">
     <h4>Actualiza tu foto de perfil</h4>
   </div>
@@ -47,7 +46,6 @@
   </form>
   <div class="container">
     <form action="/guarderias/edit" method="POST" id="form-container">
-
       <div class="row justify-content-center">
         <h4>Información</h4>
       </div>
@@ -63,6 +61,8 @@
             value='<%= user.description %>'></textarea>
         </div>
         <div class="col-md-4">
+          <label for="website">Página web</label>
+          <input class="form-control" id="guarderia-website" type="text" name="website" value='<%= user.website %>'>
           <label for="email">E-mail</label>
           <input class="form-control" id="guarderia-email" type="text" name="email" value='<%= user.email %>'>
           </br>
@@ -70,10 +70,6 @@
           <input class="form-control" id="guarderia-telephone" type="text" name="telephone" value='<%= user.telephone %>'>
         </div>
       </div>
-
-
-
-
       <div class="row justify-content-center">
         <h4>Dirección</h4>
       </div>
@@ -108,7 +104,6 @@
           <button type="submit" id="verifyAddress" class="btn btn-block btn-outline-primary">Verifica tu dirección</button>
         </div>
       </div>
-
       <div class="row justify-content-center">
         <h4>Idiomas</h4>
       </div>

@@ -41,6 +41,7 @@ router.post('/edit', (req, res, next) => {
   const updates = {
     name: req.body.name,
     description: req.body.description,
+    website: req.body.website,
     address: {
       street: req.body.street,
       number: req.body.streetnumber,

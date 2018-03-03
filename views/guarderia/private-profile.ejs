@@ -41,7 +41,7 @@
 
             <div class="row">
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <br>
                 <br>
 
@@ -49,7 +49,7 @@
                 <br>
                 <a href="/guarderias/edit" class="btn btn-outline-primary btn-sm btn-round">Editar perfil</a>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <h1>
                   <%=guarderia.name%>
                 </h1>
@@ -58,6 +58,14 @@
                     <%=guarderia.address.number%>
                       <%=guarderia.address.postcode%>
                         <%=guarderia.address.city%>
+                </div>
+                <div id="website" class="h5">Website:
+                  <a href="http://<%=guarderia.website%>">
+                    <%=guarderia.website%>
+                  </a>
+                </div>
+                <div id="telephone" class="h5">Tlf:
+                  <%=guarderia.telephone%>
                 </div>
               </div>
             </div>

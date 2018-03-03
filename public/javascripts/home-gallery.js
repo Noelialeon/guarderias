@@ -24,6 +24,7 @@ $(document).ready(() => {
           `<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">`;
         guarderia.otherpics.forEach(function (path, index, array) {
+
           if (index === 0) {
             guarderiaCard +=
               `<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`;
@@ -36,6 +37,7 @@ $(document).ready(() => {
           ` </ol>
                 <div class="carousel-inner card-img">`;
         guarderia.otherpics.forEach(function (path, index, array) {
+
           if (index === 0) {
             guarderiaCard +=
               `<div class="carousel-item active">
@@ -48,9 +50,9 @@ $(document).ready(() => {
                       </div>`;
           }
         });
+
         guarderiaCard +=
           `</div>
-
          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -61,8 +63,9 @@ $(document).ready(() => {
           </a>
         </div>`;
       }
+
       guarderiaCard +=
-      `<div class="card-body">
+        `<div class="card-body">
       <h5 class="card-title">${guarderia.name}</h5>
       <p class="card-text">${guarderia.description}</p>
       <p id="servicios">Servicios</p>
@@ -74,12 +77,14 @@ $(document).ready(() => {
             <img src="${guarderia.services.spanish_path}" class="halfsize" data-toggle="tooltip" data-placement="bottom" title="Español">
           </div>`;
       };
+
       if (guarderia.services.english) {
         guarderiaCard +=
           `<div class="col-md-3">
                   <img src="${guarderia.services.english_path}" class="halfsize" data-toggle="tooltip" data-placement="bottom" title="Inglés">
                 </div>`;
       };
+
       if (guarderia.services.german) {
         guarderiaCard +=
           `<div class="col-md-3">
