@@ -119,6 +119,7 @@ $(document).ready(() => {
     if (!garden && !swimmingPool) {
       var url = "http://localhost:3000/chargeGuarderiasDB"
     } else {
+      //la siguiente línea manda a la ruta /search, en listCollections, los valores query de true or false en garden, swimmingpool,etc
       var url = "http://localhost:3000/chargeGuarderiasDB/search?services.garden=" + garden + "&swimmingPool=" + swimmingPool + "&kitchen=" + kitchen + "&extraHours=" + extraHours + "&parkingCarrito=" + parkingCarrito + "&locker=" + locker + "&spanish=" + spanish + "&english=" + english + "&german=" + german
     }
     $.ajax({
