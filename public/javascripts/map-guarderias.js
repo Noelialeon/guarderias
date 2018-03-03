@@ -17,8 +17,8 @@ $(document).ready(() => {
 
     if (pin.guarderia.otherpics.length !== 0) {
       guarderiaCard +=
-          `<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">`;
+          `<div id="carouselExampleIndicators" class="carousel slide" style="max-width:150px" data-ride="carousel">
+            <ol class="carousel-indicators halfsize">`;
     pin.guarderia.otherpics.forEach(function(path, index, array){
         if (index === 0) {
       guarderiaCard +=
@@ -30,28 +30,28 @@ $(document).ready(() => {
     });
       guarderiaCard +=
             ` </ol>
-              <div class="carousel-inner">`;
+              <div class="carousel-inner card-img">`;
     pin.guarderia.otherpics.forEach(function(path, index, array) {
       if (index === 0) {
         guarderiaCard +=
             `<div class="carousel-item active">
-              <img class="d-block w-100" src=${path}>
+              <img class="d-block h-100" src=${path}>
                 </div>`;
       } else {
         guarderiaCard +=
                 `<div class="carousel-item">
-                  <img class="d-block w-100" src=${path}>
+                  <img class="d-block h-100" src=${path}>
                     </div>`;
       }
     });
       guarderiaCard +=
       `</div>
 
-       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+       <a class="carousel-control-prev halfsize" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next halfsize" href="#carouselExampleIndicators" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>

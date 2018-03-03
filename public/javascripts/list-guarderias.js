@@ -43,17 +43,17 @@ $(document).ready(() => {
       });
         guarderiaCard +=
               ` </ol>
-                <div class="carousel-inner">`;
+                <div class="carousel-inner card-img">`;
       guarderia.otherpics.forEach(function(path, index, array) {
         if (index === 0) {
           guarderiaCard +=
               `<div class="carousel-item active">
-                <img class="d-block w-100" src=${path}>
+                <img class="d-block h-100" src=${path}>
                   </div>`;
         } else {
           guarderiaCard +=
                   `<div class="carousel-item">
-                    <img class="d-block w-100" src=${path}>
+                    <img class="d-block h-100" src=${path}>
                       </div>`;
         }
       });

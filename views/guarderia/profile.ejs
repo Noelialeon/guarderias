@@ -9,15 +9,15 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="<%=index%>"></li>
             <% }}) %>
     </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner carousel-img">
       <%guarderia.otherpics.forEach(function(path, index, array){ %>
         <%if(index === 0) { %>
           <div class="carousel-item active">
-            <img class="d-block w-100" src="<%=path%>">
+            <img class="d-block h-100" src="<%=path%>">
           </div>
           <% } else { %>
             <div class="carousel-item">
-              <img class="d-block w-100" src="<%=path%>">
+              <img class="d-block h-100" src="<%=path%>">
             </div>
             <% }}) %>
     </div>
@@ -144,7 +144,10 @@
                         <%= guarderia.username %> no tiene comentarios aún.</p>
                     </div>
                     <% } %>
+                    
+                    <% if(locals.role === "users"){ %>
                       <hr>
+                      
                       <form action="/guarderias/profile/<%=guarderia.username%>" method="POST" id="new-opinion">
                         <h3>Nuevo comentario:</h3>
                         <textarea class="form-control" type="text" name="commentBody" rows="4" placeholder="Escribe aquí tu opinión"></textarea>
@@ -161,6 +164,7 @@
                         </div>
                         <% } %>
                           <br>
+                          <% } %>
           </div>
         </div>
         <div class="col-md-2">

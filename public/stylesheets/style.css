@@ -6023,3 +6023,12 @@ textarea.form-control {
   -webkit-transform:scale(0.50);
   transform:scale(0.50);
 }
+.card-img-pin {
+  max-height: 200px;
+  width: auto;
+}
+
+.carousel-img {
+  max-height: 400px;
+  width: auto;
+  };
