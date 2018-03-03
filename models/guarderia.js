@@ -46,6 +46,7 @@ const guarderiaSchema = new Schema({
   },
   telephone: Number,
   email: String,
+  website: String,
   profilepic_path: { type: String, default: '/images/profile-pic-guarderias.png' },
   profilepic_name: { type: String, default: 'default_pic' },
   otherpics: [String],
