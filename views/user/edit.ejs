@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center align-items-center">
     <div class="col-md-2">
       <br>
       <br>
-      <img src="<%=user.profilepic_path%>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+      <img src="<%=user.profilepic_path%>" alt="Circle Image" class="img-circle img-no-padding img-responsive ">
       <br>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <h2>
         <%= user.username %>, edita tu perfil</h2>
     </div>
@@ -22,12 +22,15 @@
         <label for="firstname">Nombre</label>
         <input class="form-control" id="user-firstname" type="text" name="firstname" value='<%= user.firstname %>'>
         </br>
-        <label for="lastname">Apellido</label>
-        <input class="form-control" id="user-lastname" type="text" name="lastname" value='<%= user.lastname %>'>
-      </div>
-      <div class="col-auto">
         <label for="children">Hijos</label>
         <input class="form-control" id="user-children" type="number" name="children" value='<%= user.children %>'>
+      </div>
+      <div class="col-sm-4">
+        <label for="lastname">Apellido</label>
+        <input class="form-control" id="user-lastname" type="text" name="lastname" value='<%= user.lastname %>'>
+        </br>
+        <label for="lastname">Descripción</label>
+        <textarea class="form-control" id="user-description" type="text" name="description" rows="4" placeholder="Cuéntanos sobre ti"><%= user.description %></textarea>
       </div>
     </div>
     </br>

@@ -10,42 +10,41 @@ $(document).ready(() => {
   var markers = [];
   var currentInfoWindow = null;
 
-  //Añadir aquí la info que se muestra en la infowindow aquí:
   const contentString = (pin) => {
-    
+
     guarderiaCard = `<div class="card-body">`
 
     if (pin.guarderia.otherpics.length !== 0) {
       guarderiaCard +=
-          `<div id="carouselExampleIndicators" class="carousel slide" style="max-width:150px" data-ride="carousel">
+        `<div id="carouselExampleIndicators" class="carousel slide" style="max-width:150px" data-ride="carousel">
             <ol class="carousel-indicators halfsize">`;
-    pin.guarderia.otherpics.forEach(function(path, index, array){
+      pin.guarderia.otherpics.forEach(function (path, index, array) {
         if (index === 0) {
-      guarderiaCard +=
-              `<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`;                 
+          guarderiaCard +=
+            `<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>`;
         } else {
-      guarderiaCard += 
-              `<li data-target="#carouselExampleIndicators" data-slide-to="<${index}>"></li>`;
+          guarderiaCard +=
+            `<li data-target="#carouselExampleIndicators" data-slide-to="<${index}>"></li>`;
         }
-    });
+      });
       guarderiaCard +=
-            ` </ol>
+        ` </ol>
               <div class="carousel-inner card-img">`;
-    pin.guarderia.otherpics.forEach(function(path, index, array) {
-      if (index === 0) {
-        guarderiaCard +=
+      pin.guarderia.otherpics.forEach(function (path, index, array) {
+        if (index === 0) {
+          guarderiaCard +=
             `<div class="carousel-item active">
               <img class="d-block h-100" src=${path}>
                 </div>`;
-      } else {
-        guarderiaCard +=
-                `<div class="carousel-item">
+        } else {
+          guarderiaCard +=
+            `<div class="carousel-item">
                   <img class="d-block h-100" src=${path}>
                     </div>`;
-      }
-    });
+        }
+      });
       guarderiaCard +=
-      `</div>
+        `</div>
 
        <a class="carousel-control-prev halfsize" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -56,17 +55,17 @@ $(document).ready(() => {
           <span class="sr-only">Next</span>
         </a>
       </div>`;
-  }
+    }
 
     guarderiaCard +=
 
-    `<h5 class="card-title">${pin.guarderia.name}</h5>
+      `<h5 class="card-title">${pin.guarderia.name}</h5>
     <p class="card-text">${pin.guarderia.description}</p>
     <p class="card-text">${pin.guarderia.address.city}</p>
     <a href="/guarderias/profile/${pin.guarderia.username}" class="card-link">Ver guadería</a></div></div>`
 
-    
-    
+
+
     return (guarderiaCard);
   };
 
@@ -107,6 +106,7 @@ $(document).ready(() => {
   function chargeGuarderias() {
     var garden = $("#garden-checkbox").is(':checked') ? true : false;
     var swimmingPool = $("#swimming_pool-checkbox").is(':checked') ? true : false;
+
     if (!garden && !swimmingPool) {
       var url = "http://localhost:3000/chargeGuarderiasDB"
     } else {
@@ -168,7 +168,7 @@ $(document).ready(() => {
   });
 
   $('#filter').submit(() => {
-      event.preventDefault();
-      chargeGuarderias();
+    event.preventDefault();
+    chargeGuarderias();
   });
 });
