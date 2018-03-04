@@ -18,6 +18,7 @@ router.post('/edit', (req, res, next) => {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     children: req.body.children,
+    description: req.body.description,
   };
   User.findByIdAndUpdate(userId, updates, (err, user) => {
     if (err) { return next(err); }

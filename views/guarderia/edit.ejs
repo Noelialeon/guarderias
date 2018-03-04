@@ -1,17 +1,12 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center align-items-center">
     <div class="col-md-2">
-      </br>
-      </br>
-      <section>
-        <div class="owner">
-          <div class="avatar">
-            <img src="<%= user.profilepic_path %>" alt="Circle Image" class="img-circle img-no-padding img-responsive" />
-          </div>
-        </div>
-      </section>
+      <br>
+      <br>
+      <img src="<%=user.profilepic_path%>" alt="Circle Image" class="img-circle img-no-padding img-responsive ">
+      <br>
     </div>
-    <div class="col-md-10 d-flex align-items-center">
+    <div class="col-md-6">
       <h2>
         <%= user.username %>, edita tu perfil</h2>
     </div>
@@ -53,12 +48,11 @@
       <div class="row justify-content-center">
         <div class="row"></div>
         <div class="col-sm-4">
-          <label for="firstname">Name</label>
+          <label for="firstname">Nombre</label>
           <input class="form-control" id="guarderia-name" type="text" name="name" value='<%= user.name %>'>
           </br>
-          <label for="lastname">Description</label>
-          <textarea class="form-control" id="guarderia-description" type="text" name="description" rows="4" placeholder="Describe tu guardería"
-            value='<%= user.description %>'></textarea>
+          <label for="lastname">Descripción</label>
+          <textarea class="form-control" id="guarderia-description" type="text" name="description" rows="4" placeholder="Describe tu guardería"><%= user.description %></textarea>
         </div>
         <div class="col-md-4">
           <label for="website">Página web</label>

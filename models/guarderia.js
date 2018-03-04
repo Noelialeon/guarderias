@@ -28,7 +28,7 @@ const guarderiaSchema = new Schema({
     parkingCarrito: Boolean,
     parking_carrito_path: { type: String, default: '/images/parking-carrito-icon' },
     locker: Boolean,
-    lockerPath: { type: String, default: '/images/locker-icon' },
+    locker_path: { type: String, default: '/images/locker-icon' },
   },
   address: {
     street: { type: String, default: 'Aún no se ha indicado' },

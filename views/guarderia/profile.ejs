@@ -21,7 +21,6 @@
             </div>
             <% }}) %>
     </div>
-
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -32,18 +31,12 @@
     </a>
   </div>
   <% } %>
-
     <div class="container">
       <div class="row">
         <div class="col-md-8">
           <div class="card-body">
-
-            <div class="row">
-
+            <div class="row align-items-center">
               <div class="col-md-2">
-                <br>
-                <br>
-
                 <img src="<%=guarderia.profilepic_path%>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
               </div>
               <div class="col-md-8">
@@ -52,13 +45,16 @@
                 </h1>
                 <div id="address" class="h5">Dirección:
                   <%=guarderia.address.street%>
-                    <%=guarderia.address.number%>
+                    <%=guarderia.address.number%>,
                       <%=guarderia.address.postcode%>
                         <%=guarderia.address.city%>
                 </div>
-                <div id="website" class="h5" href="http://<%=guarderia.website%>">Website:
+                <div class="h5" id="website">
+                  Website:
+                  <a href="http://<%=guarderia.website%>">
                     <%=guarderia.website%>
-                  </div>
+                  </a>
+                </div>
                 <div id="telephone" class="h5">Tlf:
                   <%=guarderia.telephone%>
                 </div>
@@ -83,7 +79,6 @@
                         </div>
                         <%}%>
             </div>
-
             <h4 id="facilities">Servicios</h4>
             <br>
             <div class="row justify-content-left">
@@ -121,7 +116,6 @@
                                     <%}%>
             </div>
           </div>
-
           <h2> Comentarios acerca de
             <%=guarderia.username%>
           </h2>
@@ -150,27 +144,25 @@
                         <%= guarderia.username %> no tiene comentarios aún.</p>
                     </div>
                     <% } %>
-                    
-                    <% if(locals.role === "users"){ %>
-                      <hr>
-                      
-                      <form action="/guarderias/profile/<%=guarderia.username%>" method="POST" id="new-opinion">
-                        <h3>Nuevo comentario:</h3>
-                        <textarea class="form-control" type="text" name="commentBody" rows="4" placeholder="Escribe aquí tu opinión"></textarea>
-                        </br>
-                        <label for="starsRanking">Valoración</label>
+                      <% if(locals.role === "users"){ %>
+                        <hr>
+                        <form action="/guarderias/profile/<%=guarderia.username%>" method="POST" id="new-opinion">
+                          <h3>Nuevo comentario:</h3>
+                          <textarea class="form-control" type="text" name="commentBody" rows="4" placeholder="Escribe aquí tu opinión"></textarea>
+                          </br>
+                          <label for="starsRanking">Valoración</label>
 
-                        <input type="number" name="starsRanking" min="1" max="5" placeholder="De 1 a 5">
-                        <button class="btn btn-block btn-outline-primary">Comentar</button>
-                      </form>
-                      <br>
-                      <% if ( typeof(error) != "undefined") { %>
-                        <div class="alert alert-danger" role="alert">
-                          <%= error %>
-                        </div>
-                        <% } %>
-                          <br>
+                          <input type="number" name="starsRanking" min="1" max="5" placeholder="De 1 a 5">
+                          <button class="btn btn-block btn-outline-primary">Comentar</button>
+                        </form>
+                        <br>
+                        <% if ( typeof(error) != "undefined") { %>
+                          <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                          </div>
                           <% } %>
+                            <br>
+                            <% } %>
           </div>
         </div>
         <div class="col-md-2">
@@ -181,6 +173,5 @@
         </div>
       </div>
     </div>
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqvdUmBMrb4nRgdJfkT7WlhOGA1VKTOw"></script>
     <script type="text/javascript" src="/javascripts/map-profile-guarderia.js"></script>

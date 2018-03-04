@@ -10,6 +10,7 @@ const userSchema = new Schema({
   firstname: String,
   lastname: String,
   children: Number,
+  description: String,
   profilepic_path: { type: String, default: '/images/profile-pic-user' },
   profilepic_name: { type: String, default: 'default_user_pic' },
   opinion_count: Number,
