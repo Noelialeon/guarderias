@@ -12,16 +12,19 @@ $(document).ready(() => {
     var spanish = $("#spanish-checkbox").is(':checked') ? true : false;
     var english = $("#english-checkbox").is(':checked') ? true : false;
     var german = $("#german-checkbox").is(':checked') ? true : false;
-    
 
-    if (!garden && !swimmingPool) {
-      var url = "http://localhost:3000/chargeGuarderiasDB"
-    } else {
-      var url = "http://localhost:3000/chargeGuarderiasDB/search?garden=" + garden + "&swimmingPool=" + swimmingPool + "&kitchen=" + kitchen + "&extraHours=" + extraHours + "&parkingCarrito=" + parkingCarrito + "&locker=" + locker + "&spanish=" + spanish + "&english=" + english + "&german=" + german}
+    // if (!garden && !swimmingPool) {
+    //   var url = "http://localhost:3000/chargeGuarderiasDB"
+    // } else {
+      var query = $('#filter').serialize();
+      var url = `http://localhost:3000/chargeGuarderiasDB/search?${query}`;
+      console.log('url', url)
+    // }
     $.ajax({
       url: url,
       method: 'GET',
       success: function (guarderias) {
+        console.log('guarderias', guarderias);
         deleteList();
         listGuarderias(guarderias);
       },
@@ -173,7 +176,27 @@ $(document).ready(() => {
   });
 
   $('#filter').submit(() => {
-      event.preventDefault();
-      chargeGuarderiasList();
+    event.preventDefault();
+    // chargeGuarderiasList();
+    submitSearchQuery();
   });
 });
+
+function submitSearchQuery() {
+  console.log('submit');  
+  var query = $('#filter').serialize();
+  var url = `http://localhost:3000/chargeGuarderiasDB/searchthor?${query}`;
+  console.log('url', url)
+  $.ajax({
+    url: url,
+    method: 'GET',
+    success: function (guarderias) {
+      console.log('guarderias', guarderias);
+      // deleteList();
+      // listGuarderias(guarderias);
+    },
+    error(err) {
+      console.error(err);
+    },
+  });
+}
