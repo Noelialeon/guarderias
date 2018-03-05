@@ -4,7 +4,7 @@ $(document).ready(() => {
 
   function chargeGuarderias() {
     $.ajax({
-      url: 'http://localhost:3000/chargeGuarderiasDB',
+      url: 'process.env.MONGODB_URI',
       method: 'GET',
       success: listGuarderias,
       error(err) {

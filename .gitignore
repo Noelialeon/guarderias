@@ -33,4 +33,4 @@ npm-debug.log
 .env
 
 # Uploads images
-public/uploads
+public/uploads/*
