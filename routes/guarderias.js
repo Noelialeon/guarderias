@@ -18,12 +18,13 @@ router.get('/edit', (req, res) => {
 });
 
 router.post('/edit', (req, res, next) => {
-  console.log("body", req.body);
+  const guarderiaId = req.user.id;
   let swimmingPoolIs;
   let squaremetersIs;
   let kitchenIs;
   let extraHoursIs;
   let spanishIs;
+  let gardenIs;
   let englishIs;
   let germanIs;
   let parkingCarritoIs;
