@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
-// const dotenv = require('dotenv').config();
+require('dotenv').config();
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -20,9 +20,9 @@ const flash = require('connect-flash');
 
 const multer = require('multer');
 
-const { url, db, port } = require('./config');
+// const { url, db, port } = require('./config');
 
-mongoose.connect(`mongodb://${url}:${port}/${db}`, { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 const home = require('./routes/index');

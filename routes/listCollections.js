@@ -48,6 +48,7 @@ router.get('/search', (req, res) => {
       if (error) {
         res.status(500).json({ message: error });
       } else {
+        // al hacer este console.log, debería dar el resultado de qué guarderías tienen en valor true los key anteriores, pero sale vacío
         res.status(200).json(guarderias);
       }
     });
