@@ -20,10 +20,19 @@ const flash = require('connect-flash');
 
 const multer = require('multer');
 
-// const { url, db, port } = require('./config');
-
-mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true });
 mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, {
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE,
+  useMongoClient: true
+}, (err) => {
+  if (!err) {
+    console.log(`connected to ${process.env.MONGODB_URI}`);
+  } else {
+    console.error(`${err.name}: ${err.message}`);
+    process.exit(-1);
+  }
+});
 
 const home = require('./routes/index');
 const users = require('./routes/users');

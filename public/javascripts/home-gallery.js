@@ -4,7 +4,7 @@ $(document).ready(() => {
 
   function chargeGuarderias() {
     $.ajax({
-      url: 'process.env.MONGODB_URI',
+      url: 'https://localhost:PORT/chargeGuarderiasDB',
       method: 'GET',
       success: listGuarderias,
       error(err) {
@@ -134,11 +134,12 @@ $(document).ready(() => {
         </div >
         </div >
         <br>`;
-      $("#home-gallery").append(guarderiaCard);
 
+      $("#home-gallery").append(guarderiaCard);
       totalList.push(guarderia);
     });
   };
+
 
   chargeGuarderias();
 

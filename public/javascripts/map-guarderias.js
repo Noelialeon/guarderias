@@ -47,8 +47,7 @@ $(document).ready(() => {
 
   function chargeGuarderias() {
     var query = $('#filter').serialize();
-    var url = `http://localhost:3000/chargeGuarderiasDB/search?${query}`;
-    console.log('url', url)
+    var url = `http://localhost:PORT/chargeGuarderiasDB/search?${query}`;
     $.ajax({
       url: url,
       method: 'GET',
@@ -211,6 +210,7 @@ $(document).ready(() => {
       $("#guarderias-list").append(guarderiaCard);
       totalList.push(guarderia);
     });
+
   };
 
   const contentString = (pin) => {
@@ -290,8 +290,8 @@ $(document).ready(() => {
       event.preventDefault();
       $("#map").toggle();
       $("#guarderias-list").toggle();
-        deleteGuarderias();
-        submitSearchQuery();
+      deleteGuarderias();
+      submitSearchQuery();
     }
   });
 
@@ -301,7 +301,7 @@ $(document).ready(() => {
       $("#map").toggle();
       $("#guarderias-list").toggle();
       deleteGuarderias();
-        submitSearchQuery();
+      submitSearchQuery();
     };
   });
 
@@ -312,7 +312,7 @@ $(document).ready(() => {
 
   function submitSearchQuery() {
     var query = $('#filter').serialize();
-    var url = `http://localhost:3000/chargeGuarderiasDB/searchfilter?${query}`;
+    var url = `http://localhost:PORT/chargeGuarderiasDB/searchfilter?${query}`;
     console.log('url', url)
     $.ajax({
       url: url,
